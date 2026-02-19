@@ -1,6 +1,11 @@
 let canvas;
 let ctx;
 let charakter = new Character();
+let enemeies = [
+    new Chicken(),
+    new Chicken(),
+    new Chicken(),
+];
 
 function init() {
     canvas = document.getElementById("canvas");
