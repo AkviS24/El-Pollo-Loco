@@ -1,10 +1,10 @@
 class World {
     charakter = new Character();
-    enemeies = [
+    enemies = [
     new Chicken(),
     new Chicken(),
     new Chicken(),
-    ]
+    ];
 
     draw() {
         console.log("draw world");
