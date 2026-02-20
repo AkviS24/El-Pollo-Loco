@@ -8,6 +8,9 @@ class World {
     clouds = [
         new Cloud(),
     ];
+    backgroundObjects = [
+        new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png"),
+    ];
     ctx;
     canvas;
 
@@ -20,12 +23,17 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-        for (let i = 0; i < this.enemies.length; i++) {
-            this.ctx.drawImage(this.enemies[i].img, this.enemies[i].x, this.enemies[i].y, this.enemies[i].width, this.enemies[i].height);
-        }
-        for (let i = 0; i < this.clouds.length; i++) {
-            this.ctx.drawImage(this.clouds[i].img, this.clouds[i].x, this.clouds[i].y, this.clouds[i].width, this.clouds[i].height);
-        }
+        this.enemies.forEach(enemy => {
+            this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
+        });
+        
+        this.clouds.forEach(cloud => {
+            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
+        });
+
+        this.backgroundObjects.forEach(backgroundObject => {
+            this.ctx.drawImage(backgroundObject.img, backgroundObject.x, backgroundObject.y, backgroundObject.width, backgroundObject.height);
+        });
         self = this;
         requestAnimationFrame(function () {
             self.draw();
