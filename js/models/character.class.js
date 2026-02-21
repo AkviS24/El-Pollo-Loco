@@ -1,5 +1,8 @@
 class Character extends MovableObject {
 
+    height = 250;
+    y = 180;
+
     IMAGES_WALKING = [
             "./img/2_character_pepe/2_walk/W-21.png",
             "./img/2_character_pepe/2_walk/W-22.png",
@@ -18,7 +21,7 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_WALKING.length;
+            let i = this.currentImage % this.IMAGES_WALKING.length; // Wenn am Ende des Arrays fängt er wieder von vorne an
             let path = this.IMAGES_WALKING[i];
             this.img = this.imageCache[path];
             this.currentImage++;
