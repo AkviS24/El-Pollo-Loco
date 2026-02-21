@@ -23,24 +23,23 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.addToMap(this.character);
-        this.enemies.forEach(enemy => {
-            this.addToMap(enemy);
-        });
-        
-        this.clouds.forEach(cloud => {
-            this.addToMap(cloud);
-        });
-
-        this.backgroundObjects.forEach(backgroundObject => {
-            this.addToMap(backgroundObject);
-        });
+        addObjectsToMap(this.enemies);
+        addObjectsToMap(this.clouds);
+        addObjectsToMap(this.backgroundObjects);
         self = this;
         requestAnimationFrame(function () {
             self.draw();
-        })
+        });
+    }
+
+    addObjectsToMap(objects) {
+        objects.forEach(object => {
+            this.addToMap(object);
+        });
     }
 
     addToMap(mo) {
             this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     }
+    
 }
