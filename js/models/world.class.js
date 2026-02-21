@@ -22,10 +22,12 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.addObjectsToMap(this.backgroundObjects);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addObjectsToMap(this.clouds);
-        this.addObjectsToMap(this.backgroundObjects);
+        
         self = this;
         requestAnimationFrame(function () {
             self.draw();
