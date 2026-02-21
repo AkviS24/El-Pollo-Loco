@@ -9,7 +9,7 @@ class World {
         new Cloud(),
     ];
     backgroundObjects = [
-        new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 0 , 100),
+        new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 0),
     ];
     ctx;
     canvas;
