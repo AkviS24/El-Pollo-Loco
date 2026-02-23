@@ -27,6 +27,6 @@ class Chicken extends Character {
             let path = this.IMAGES_WALKING[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        }, 100);
+        }, 200);
     };
 };
