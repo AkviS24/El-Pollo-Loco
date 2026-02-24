@@ -23,10 +23,7 @@ class Chicken extends Character {
     animate() {
         this.moveLeft();
         setInterval(() => {
-            let i = this.currentImage % this.IMAGES_WALKING.length; // Wenn am Ende des Arrays fängt er wieder von vorne an
-            let path = this.IMAGES_WALKING[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.IMAGES_WALKING);
         }, 200);
     };
-};
+}
