@@ -31,7 +31,8 @@ class Character extends MovableObject {
             if (this.world.keyboard.LEFT) {
                 this.x -= this.speed;
                 this.otherDirection = true;
-            }       
+            }
+            this.world.camera_x = -this.x + 100; // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird       
          }, 1000 / 60)
 
         setInterval(() => {
