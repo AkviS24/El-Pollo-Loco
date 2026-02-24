@@ -39,15 +39,13 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
-                this.otherDirection = false;
+                this.moveRight();
             }
             if (this.world.keyboard.LEFT && this.x > -420) {
-                this.x -= this.speed;
-                this.otherDirection = true;
+                this.moveLeft();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.speedY = 30;
+                this.jump();
             }
             this.world.camera_x = -this.x + 100; // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird       
         }, 1000 / 60)
@@ -65,7 +63,4 @@ class Character extends MovableObject {
         }, 100);
     }
 
-    jump() {
-        console.log("jump");
-    }
 };
