@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    throwableObjects = [];
 
 
     constructor(canvas, keyboard) {
@@ -14,22 +15,35 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     }
 
     setWorld() {
         this.character.world = this; //Set all characters world to this world, so they can access the world and its properties
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
+           this.checkThrowObjects(); 
+           this.checkCollisions();
+        }, 200);
+    }
+
+    checkThrowObjects() {
+        if (this.keyboard.F) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+        }    
+    }
+
+    checkCollisions() {
+         // Kollisionsabfrage zwischen Charakter und Gegnern
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy);
                 }
             });
-        }, 1000 / 60);
     }
 
     draw() {
@@ -46,6 +60,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Welt zurück verschieben, damit die UI-Elemente nicht mitverschoben werden
 
