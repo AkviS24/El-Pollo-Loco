@@ -5,6 +5,7 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
+    statusBar = new StatusBar();
 
 
     constructor(canvas, keyboard) {
@@ -36,6 +37,7 @@ class World {
         this.ctx.translate(this.camera_x, 0); // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird
 
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addToMap(this.statusBar);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
