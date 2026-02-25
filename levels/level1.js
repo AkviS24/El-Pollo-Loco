@@ -2,7 +2,6 @@ const level1 = new Level(
     [
         new Chicken(),
         new Chicken(),
-        new Chicken(),
         new Endboss()
     ],
     [
@@ -30,3 +29,7 @@ const level1 = new Level(
         new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 719*2)
     ]
 );
+
+setInterval(() => {
+           level1.enemies.push(new Chicken());
+        }, 5000);

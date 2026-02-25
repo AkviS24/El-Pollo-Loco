@@ -14,7 +14,7 @@ class Chicken extends Character {
         this.loadImage("./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
         this.height = 60;
         this.width = 60;
-        this.x = 300 + Math.random() * 500;
+        this.x = 2100 + Math.random() * 500;
         this.speed = 0.15 + Math.random() * 0.25; // Zufällige Geschwindigkeit zwischen 0.15 und 0.4
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
