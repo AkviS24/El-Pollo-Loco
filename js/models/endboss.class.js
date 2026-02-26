@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 400;
     width = 250;
     y = 60;
-    energy = 60; // benötigt dreißig Treffer (2 Energie pro Hit)
+    energy = 40; // benötigt dreißig Treffer (2 Energie pro Hit)
 
     IMAGES_WALKING = [
         "./img/4_enemie_boss_chicken/2_alert/G5.png",

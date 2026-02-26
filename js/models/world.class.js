@@ -77,7 +77,7 @@ class World {
 
                     // Belohnung und Entfernen je nach Gegnertyp
                     if (enemy instanceof Chicken) {
-                        this.character.coins += 1;
+                        this.character.coins += 2;
                         // Münzanimation erzeugen
                         this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                         this.level.enemies.splice(e, 1);
