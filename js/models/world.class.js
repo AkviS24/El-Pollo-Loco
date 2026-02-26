@@ -8,7 +8,7 @@ class World {
     statusBar = new StatusBar();
     itemBar = new ItemBar(this);
     throwableObjects = [];
-    coinAnimations = []; // einzelne Münz-Animationen nach Treffern
+    coinAnimations = [];
 
 
     constructor(canvas, keyboard) {
@@ -34,8 +34,7 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.F && this.character.bottles > 0) {
-            // Flasche etwas tiefer starten, damit sie auch normale Hühner treffen kann
-            let startY = this.character.y + this.character.height - 20; // knapp über dem Fußboden
+            let startY = this.character.y + this.character.height - 20;
             let bottle = new ThrowableObject(this.character.x + 100, startY);
             this.throwableObjects.push(bottle);
             this.character.bottles--;
@@ -53,7 +52,7 @@ class World {
             } else {
                 this.character.pups.play();
             }
-            this.keyboard.V = false; // Verhindert mehrfaches Auslösen
+            this.keyboard.V = false;
         }
     }
 
@@ -94,7 +93,7 @@ class World {
 
                     // Flasche aus der Welt entfernen
                     this.throwableObjects.splice(b, 1);
-                    break; // nach dem Treffer darf die Flasche nicht weiter geprüft werden
+                    break;
                 }
             }
         }
