@@ -35,6 +35,7 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.character.bottles--;
+            this.character.throwing.play();
         } else if (this.keyboard.F && this.character.bottles == 0) {
             this.character.pups.play();
         }   

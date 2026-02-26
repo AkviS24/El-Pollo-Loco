@@ -7,6 +7,11 @@ class Character extends MovableObject {
     coins = 0;
     bottles = 10;
     pups = new Audio("./audio/throwable/pups.mp3");
+    throwing = new Audio("./audio/throwable/bottleBreak.mp3");
+    damage = new Audio("./audio/character/characterDamage.mp3");
+    dead = new Audio("./audio/character/characterDead.wav");
+    hops = new Audio("./audio/character/characterJump.wav");
+    move = new Audio("./audio/character/characterRun.mp3");
 
     IMAGES_WALKING = [
         "./img/2_character_pepe/2_walk/W-21.png",
