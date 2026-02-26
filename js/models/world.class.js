@@ -26,7 +26,8 @@ class World {
 
     run() {
         setInterval(() => {
-           this.checkThrowObjects(); 
+           this.checkThrowObjects();
+           this.checkCoinsToBottles();
            this.checkCollisions();
         }, 200);
     }
@@ -42,6 +43,18 @@ class World {
         } else if (this.keyboard.F && this.character.bottles == 0) {
             this.character.pups.play();
         }   
+    }
+
+    checkCoinsToBottles() {
+        if (this.keyboard.V) {
+            if (this.character.coins >= 5) {
+                this.character.coins -= 5;
+                this.character.bottles += 1;
+            } else {
+                this.character.pups.play();
+            }
+            this.keyboard.V = false; // Verhindert mehrfaches Auslösen
+        }
     }
 
     checkCollisions() {
