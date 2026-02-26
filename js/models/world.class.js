@@ -32,7 +32,9 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.F && this.character.bottles > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            // Flasche etwas tiefer starten, damit sie auch normale Hühner treffen kann
+            let startY = this.character.y + this.character.height - 20; // knapp über dem Fußboden
+            let bottle = new ThrowableObject(this.character.x + 100, startY);
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.character.throwing.play();
@@ -49,6 +51,40 @@ class World {
                     this.statusBar.setPercentage(this.character.energy);
                 }
             });
+
+        // Kollisionsabfrage zwischen geworfenen Flaschen und Gegnern
+        // Wir durchlaufen beide Arrays rückwärts, damit wir Elemente entfernen können,
+        // ohne den laufenden Index durcheinanderzubringen.
+        for (let b = this.throwableObjects.length - 1; b >= 0; b--) {
+            let bottle = this.throwableObjects[b];
+            for (let e = this.level.enemies.length - 1; e >= 0; e--) {
+                let enemy = this.level.enemies[e];
+                if (bottle.isColliding(enemy)) {
+                    console.log("Bottle hit", enemy.constructor.name, "at", enemy.x, enemy.y);
+                    enemy.hit();
+                    // die Flasche soll nicht weiterfliegen
+                    bottle.speedY = 10;
+                    bottle.speed = 0;
+
+                    // Belohnung und Entfernen je nach Gegnertyp
+                    if (enemy instanceof Chicken) {
+                        this.character.coins += 1;
+                        this.level.enemies.splice(e, 1);
+                    } else if (enemy instanceof Endboss) {
+                        this.character.coins += 5;
+                        // Endboss erst entfernen, wenn er keine Energie mehr hat
+                        if (enemy.isDead()) {
+                            this.level.enemies.splice(e, 1);
+                            console.log("Endboss defeated");
+                        }
+                    }
+
+                    // Flasche aus der Welt entfernen
+                    this.throwableObjects.splice(b, 1);
+                    break; // nach dem Treffer darf die Flasche nicht weiter geprüft werden
+                }
+            }
+        }
     }
 
     draw() {
@@ -91,11 +127,8 @@ class World {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-        
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx); // Zum Debuggen, zeigt die Hitboxen an
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
