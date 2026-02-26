@@ -42,6 +42,13 @@ class Character extends MovableObject {
         "./img/2_character_pepe/4_hurt/H-43.png",
     ];
 
+    offset = {
+        top: 150,
+        bottom: 50,
+        left: 20,
+        right: 20
+    };
+
 
     constructor() {
         super();
