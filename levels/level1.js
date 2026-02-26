@@ -32,4 +32,4 @@ const level1 = new Level(
 
 setInterval(() => {
            level1.enemies.push(new Chicken());
-        }, 5000);
+        }, 15000);
