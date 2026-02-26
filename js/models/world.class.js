@@ -58,6 +58,17 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
 
+        this.content();
+
+        // Draw Funktion ruft sich selber erneut auf!!!!
+        self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        });
+    }
+
+    content() {
+        
         this.ctx.translate(-this.camera_x, 0); // Welt wird zurück geschoben damit die Statusleiste nicht mitverschoben wird
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0); // Welt wird wieder verschoben damit die Charaktere und Gegner wieder mitverschoben werden
@@ -68,12 +79,6 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0); // Welt zurück verschieben, damit die UI-Elemente nicht mitverschoben werden
-
-        // Draw Funktion ruft sich selber erneut auf!!!!
-        self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        });
     }
 
     addObjectsToMap(objects) {
