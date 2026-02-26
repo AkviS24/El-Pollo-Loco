@@ -6,8 +6,9 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    itemBar = new ItemBar(this);
     throwableObjects = [];
-    
+    coinAnimations = []; // einzelne Münz-Animationen nach Treffern
 
 
     constructor(canvas, keyboard) {
@@ -53,27 +54,26 @@ class World {
             });
 
         // Kollisionsabfrage zwischen geworfenen Flaschen und Gegnern
-        // Wir durchlaufen beide Arrays rückwärts, damit wir Elemente entfernen können,
-        // ohne den laufenden Index durcheinanderzubringen.
         for (let b = this.throwableObjects.length - 1; b >= 0; b--) {
             let bottle = this.throwableObjects[b];
             for (let e = this.level.enemies.length - 1; e >= 0; e--) {
                 let enemy = this.level.enemies[e];
                 if (bottle.isColliding(enemy)) {
-                    console.log("Bottle hit", enemy.constructor.name, "at", enemy.x, enemy.y);
                     enemy.hit();
-                    // die Flasche soll nicht weiterfliegen
                     bottle.speedY = 10;
                     bottle.speed = 0;
 
                     // Belohnung und Entfernen je nach Gegnertyp
                     if (enemy instanceof Chicken) {
                         this.character.coins += 1;
+                        // Münzanimation erzeugen
+                        this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                         this.level.enemies.splice(e, 1);
                     } else if (enemy instanceof Endboss) {
                         this.character.coins += 5;
                         // Endboss erst entfernen, wenn er keine Energie mehr hat
                         if (enemy.isDead()) {
+                            this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                             this.level.enemies.splice(e, 1);
                             console.log("Endboss defeated");
                         }
@@ -107,12 +107,14 @@ class World {
         
         this.ctx.translate(-this.camera_x, 0); // Welt wird zurück geschoben damit die Statusleiste nicht mitverschoben wird
         this.addToMap(this.statusBar);
+        this.addToMap(this.itemBar);
         this.ctx.translate(this.camera_x, 0); // Welt wird wieder verschoben damit die Charaktere und Gegner wieder mitverschoben werden
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
+        this.addObjectsToMap(this.coinAnimations);
 
         this.ctx.translate(-this.camera_x, 0); // Welt zurück verschieben, damit die UI-Elemente nicht mitverschoben werden
     }
