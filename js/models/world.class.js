@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     throwableObjects = [];
+    
 
 
     constructor(canvas, keyboard) {
@@ -30,10 +31,13 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.F) {
+        if (this.keyboard.F && this.character.bottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
-        }    
+            this.character.bottles--;
+        } else if (this.keyboard.F && this.character.bottles == 0) {
+            this.character.pups.play();
+        }   
     }
 
     checkCollisions() {

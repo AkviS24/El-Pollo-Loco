@@ -4,6 +4,9 @@ class Character extends MovableObject {
     y = 80;
     world;
     speed = 5;
+    coins = 0;
+    bottles = 10;
+    pups = new Audio("./audio/throwable/pups.mp3");
 
     IMAGES_WALKING = [
         "./img/2_character_pepe/2_walk/W-21.png",
@@ -43,10 +46,10 @@ class Character extends MovableObject {
     ];
 
     offset = {
-        top: 150,
-        bottom: 50,
-        left: 20,
-        right: 20
+        top: 100,
+        bottom: 10,
+        left: 30,
+        right: 10
     };
 
 
