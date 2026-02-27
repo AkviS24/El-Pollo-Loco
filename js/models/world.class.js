@@ -78,21 +78,17 @@ class World {
                     // Belohnung und Entfernen je nach Gegnertyp
                     if (enemy instanceof Chicken) {
                         this.character.coins += 2;
-                        // Münzanimation erzeugen
                         this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                         this.level.enemies.splice(e, 1);
                     } else if (enemy instanceof Endboss) {
                         this.character.coins += 5;
-                        // Endboss erst entfernen, wenn er keine Energie mehr hat
                         if (enemy.isDead()) {
                             this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                             this.level.enemies.splice(e, 1);
                             console.log("Endboss defeated");
                         }
                     }
-
-                    // Flasche aus der Welt entfernen
-                    this.throwableObjects.splice(b, 1);
+                    this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen
                     break;
                 }
             }

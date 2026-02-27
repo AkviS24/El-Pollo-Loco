@@ -4,26 +4,21 @@ class ItemBar extends DrawableObject {
         super();
         this.world = world;
         this.x = 40;
-        this.y = 70; // 10px unter der Statusbar (die endet bei 60)
+        this.y = 70;
         this.width = 200;
         this.height = 60;
     }
 
     draw(ctx) {
-        // Flaschen-Icon und Anzahl
         this.drawBottles(ctx);
-        // Münzen-Icon und Anzahl
         this.drawCoins(ctx);
     }
 
     drawBottles(ctx) {
         ctx.save();
-        
-        // Flaschen-Bild laden und zeichnen
         let bottleImg = new Image();
         bottleImg.src = "./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png";
         
-        // Warte bis das Bild geladen ist
         if (bottleImg.complete) {
             ctx.drawImage(bottleImg, this.x, this.y, 40, 50);
         } else {
@@ -44,7 +39,6 @@ class ItemBar extends DrawableObject {
     drawCoins(ctx) {
         ctx.save();
         
-        // Münzen-Bild laden und zeichnen
         let coinImg = new Image();
         coinImg.src = "./img/8_coin/coin_1.png";
         
