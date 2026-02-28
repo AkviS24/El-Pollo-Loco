@@ -26,9 +26,9 @@ class World {
 
     run() {
         setInterval(() => {
-           this.checkThrowObjects();
-           this.checkCoinsToBottles();
-           this.checkCollisions();
+            this.checkThrowObjects();
+            this.checkCoinsToBottles();
+            this.checkCollisions();
         }, 200);
     }
 
@@ -41,7 +41,7 @@ class World {
             this.character.throwing.play();
         } else if (this.keyboard.F && this.character.bottles == 0) {
             this.character.pups.play();
-        }   
+        }
     }
 
     checkCoinsToBottles() {
@@ -57,13 +57,13 @@ class World {
     }
 
     checkCollisions() {
-         // Kollisionsabfrage zwischen Charakter und Gegnern
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
-                }
-            });
+        // Kollisionsabfrage zwischen Charakter und Gegnern
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
 
         // Kollisionsabfrage zwischen geworfenen Flaschen und Gegnern
         for (let b = this.throwableObjects.length - 1; b >= 0; b--) {
@@ -77,23 +77,31 @@ class World {
 
                     // Belohnung und Entfernen je nach Gegnertyp
                     if (enemy instanceof Chicken) {
-                        this.character.coins += 2;
-                        this.character.collectSound.play();
-                        this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
-                        this.level.enemies.splice(e, 1);
+                        this.chickenDeath(e, enemy);
                     } else if (enemy instanceof Endboss) {
-                        this.character.coins += 5;
-                        this.character.collectSound.play();
-                        if (enemy.isDead()) {
-                            this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
-                            this.level.enemies.splice(e, 1);
-                            console.log("Endboss defeated");
-                        }
+                        this.endbossDeath(e, enemy);
                     }
                     this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen
                     break;
                 }
             }
+        }
+    }
+
+    chickenDeath(e, enemy) {
+        this.character.coins += 2;
+        this.character.collectSound.play();
+        this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
+        this.level.enemies.splice(e, 1);
+    }
+
+    endbossDeath(e, enemy) {
+        this.character.coins += 5;
+        this.character.collectSound.play();
+        if (enemy.isDead()) {
+            this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
+            this.level.enemies.splice(e, 1);
+            console.log("Endboss defeated");
         }
     }
 
@@ -114,7 +122,7 @@ class World {
     }
 
     content() {
-        
+
         this.ctx.translate(-this.camera_x, 0); // Welt wird zurück geschoben damit die Statusleiste nicht mitverschoben wird
         this.addToMap(this.statusBar);
         this.addToMap(this.itemBar);
