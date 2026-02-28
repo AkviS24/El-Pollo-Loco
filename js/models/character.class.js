@@ -71,7 +71,16 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.canMoveRight()) {
+            this.moveCharacter();       
+        }, 1000 / 60)
+
+        setInterval(() => {
+            this.statusUpdate();
+        }, 100);
+    }
+
+    moveCharacter() {
+        if (this.canMoveRight()) {
                 this.moveRight();
                 this.otherDirection = false;
             }
@@ -82,11 +91,11 @@ class Character extends MovableObject {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
             }
-            this.world.camera_x = -this.x + 100; // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird       
-        }, 1000 / 60)
+            this.world.camera_x = -this.x + 100; // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird
+    }
 
-        setInterval(() => {
-            if (this.isDead()) {
+    statusUpdate() {
+        if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
@@ -99,7 +108,6 @@ class Character extends MovableObject {
                     this.img = this.imageCache[this.IMAGES_WALKING[0]];
                 }
             }
-        }, 100);
     }
 
     canMoveRight() {
