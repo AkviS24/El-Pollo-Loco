@@ -78,10 +78,12 @@ class World {
                     // Belohnung und Entfernen je nach Gegnertyp
                     if (enemy instanceof Chicken) {
                         this.character.coins += 2;
+                        this.character.collectSound.play();
                         this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                         this.level.enemies.splice(e, 1);
                     } else if (enemy instanceof Endboss) {
                         this.character.coins += 5;
+                        this.character.collectSound.play();
                         if (enemy.isDead()) {
                             this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
                             this.level.enemies.splice(e, 1);

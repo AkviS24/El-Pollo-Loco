@@ -12,6 +12,7 @@ class Character extends MovableObject {
     dead = new Audio("./audio/character/characterDead.wav");
     hops = new Audio("./audio/character/characterJump.wav");
     move = new Audio("./audio/character/characterRun.mp3");
+    collectSound = new Audio("./audio/collectibles/collectSound.wav");
 
     IMAGES_WALKING = [
         "./img/2_character_pepe/2_walk/W-21.png",
