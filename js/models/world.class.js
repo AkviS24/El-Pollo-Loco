@@ -71,21 +71,25 @@ class World {
             for (let e = this.level.enemies.length - 1; e >= 0; e--) {
                 let enemy = this.level.enemies[e];
                 if (bottle.isColliding(enemy)) {
-                    enemy.hit();
-                    bottle.speedY = 10;
-                    bottle.speed = 0;
-
-                    // Belohnung und Entfernen je nach Gegnertyp
-                    if (enemy instanceof Chicken) {
-                        this.chickenDeath(e, enemy);
-                    } else if (enemy instanceof Endboss) {
-                        this.endbossDeath(e, enemy);
-                    }
-                    this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen
+                    this.bottleLogic(e, enemy, b, bottle);
                     break;
                 }
             }
         }
+    }
+
+    bottleLogic(e, enemy, b, bottle) {
+        enemy.hit();
+        bottle.speedY = 10;
+        bottle.speed = 0;
+
+        // Belohnung und Entfernen je nach Gegnertyp
+        if (enemy instanceof Chicken) {
+            this.chickenDeath(e, enemy);
+        } else if (enemy instanceof Endboss) {
+            this.endbossDeath(e, enemy);
+        }
+        this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen
     }
 
     chickenDeath(e, enemy) {
