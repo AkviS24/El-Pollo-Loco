@@ -119,7 +119,7 @@ class World {
         this.content();
 
         // Draw Funktion ruft sich selber erneut auf!!!!
-        self = this;
+        self = this; // Nur so kann man das this in der Funktion von requestAnimationFrame verwenden, da es sonst auf das Window Objekt zeigt
         requestAnimationFrame(function () {
             self.draw();
         });
