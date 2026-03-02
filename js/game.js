@@ -9,6 +9,13 @@ function init() {
     console.log('My Character is: ', world.character);
 }
 
+function stopGame() {
+    world.intervals.push(chickenCreatorInterval);
+    world.intervals.forEach(element => {
+        clearInterval(element);
+    });
+}
+
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 65 || e.keyCode == 37) {
         keyboard.LEFT = true;

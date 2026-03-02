@@ -9,6 +9,8 @@ class World {
     itemBar = new ItemBar(this);
     throwableObjects = [];
     coinAnimations = [];
+    // collect every timer id that is created during the game
+    intervals = [];
 
 
     constructor(canvas, keyboard) {
@@ -22,20 +24,32 @@ class World {
 
     setWorld() {
         this.character.world = this; //Set all characters world to this world, so they can access the world and its properties
+        if (this.character.gravityInterval) {
+            this.intervals.push(this.character.gravityInterval);
+        }
+        if (this.character.moveInterval) {
+            this.intervals.push(this.character.moveInterval);
+        }
+        if (this.character.statusInterval) {
+            this.intervals.push(this.character.statusInterval);
+        }
+        this.character.animate();
     }
 
     run() {
-        setInterval(() => {
+        let runInterval = setInterval(() => {
             this.checkThrowObjects();
             this.checkCoinsToBottles();
             this.checkCollisions();
         }, 200);
+        this.intervals.push(runInterval);
     }
 
     checkThrowObjects() {
         if (this.keyboard.F && this.character.bottles > 0) {
             let startY = this.character.y + this.character.height - 20;
             let bottle = new ThrowableObject(this.character.x + 100, startY);
+            bottle.world = this;
             this.throwableObjects.push(bottle);
             this.character.bottles--;
             this.character.throwing.play();
@@ -106,6 +120,7 @@ class World {
             this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
             this.level.enemies.splice(e, 1);
             console.log("Endboss defeated");
+            stopGame();
         }
     }
 

@@ -1,19 +1,26 @@
 class MovableObject extends DrawableObject {
-    
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    gravityInterval;
 
     applyGravity() {
-        setInterval(() => {
+        let id = setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
+
+        this.gravityInterval = id;
+
+        if (this.world && this.world.intervals) {
+            this.world.intervals.push(id);
+        }
     }
 
     isColliding(mo) {
