@@ -24,6 +24,14 @@ function init() {
     soundPushing();
 }
 
+function mute() {
+    if (sounds[0].muted) {
+        sounds.forEach((s)=> s.muted = false);
+    } else {
+        sounds.forEach((s)=> s.muted = true);
+    }
+}
+
 function stopGame() {
     world.intervals.forEach(element => {
         clearInterval(element);
