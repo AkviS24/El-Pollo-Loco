@@ -32,5 +32,8 @@ class CoinAnimation extends MovableObject {
             this.playAnimation(this.IMAGES);
             this.y -= this.speedY;
         }, 100);
+        if (this.world && this.world.intervals) {
+            this.world.intervals.push(this.interval);
+        }
     }
 }

@@ -43,6 +43,14 @@ class World {
             this.checkCollisions();
         }, 200);
         this.intervals.push(runInterval);
+        this.startChickenCreator();
+    }
+
+    startChickenCreator() {
+        let chickenCreatorInterval = setInterval(() => {
+            level1.enemies.push(new Chicken());
+        }, 5000);
+        this.intervals.push(chickenCreatorInterval);
     }
 
     checkThrowObjects() {

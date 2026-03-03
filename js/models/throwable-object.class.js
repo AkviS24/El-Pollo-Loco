@@ -30,14 +30,20 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.speed = 10;
         this.applyGravity();
-        setInterval(() => {
+        let flightId = setInterval(() => {
             this.x += 10;
         }, 25);
+        if (this.world && this.world.intervals) {
+            this.world.intervals.push(flightId);
+        }
     }
 
     animate() {
-        setInterval(() => {
+        let animId = setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATION);
         }, 100);
+        if (this.world && this.world.intervals) {
+            this.world.intervals.push(animId);
+        }
     }
 }

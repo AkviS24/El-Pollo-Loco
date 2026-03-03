@@ -28,11 +28,14 @@ class Chicken extends Character {
     };
 
     animate() {
-        setInterval(() => {
-                    this.moveLeft();
-                }, 1000 / 60);
-        setInterval(() => {
+        let moveId = setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60);
+        let animId = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
         }, 200);
+        if (this.world && this.world.intervals) {
+            this.world.intervals.push(moveId, animId);
+        }
     };
 }

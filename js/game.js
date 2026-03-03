@@ -10,7 +10,6 @@ function init() {
 }
 
 function stopGame() {
-    world.intervals.push(chickenCreatorInterval);
     world.intervals.forEach(element => {
         clearInterval(element);
     });

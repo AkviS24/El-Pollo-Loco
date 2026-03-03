@@ -13,3 +13,12 @@ canvas {
     background-color: black;
     box-shadow: rgba(0, 0, 0, 0.5) 40px 40px 12px;
 }
+
+#startscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 720px;
+    height: 480px;
+    z-index: -1;
+}

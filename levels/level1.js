@@ -29,8 +29,3 @@ const level1 = new Level(
         new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 719 * 2)
     ]
 );
-
-
-chickenCreatorInterval = setInterval(() => {
-    level1.enemies.push(new Chicken());
-}, 5000);
