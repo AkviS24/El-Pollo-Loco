@@ -34,6 +34,13 @@ class World {
             this.intervals.push(this.character.statusInterval);
         }
         this.character.animate();
+
+        this.level.enemies.forEach(enemy => {
+            enemy.world = this;
+            if (enemy.moveInterval) this.intervals.push(enemy.moveInterval);
+            if (enemy.statusInterval) this.intervals.push(enemy.statusInterval);
+            if (enemy.animInterval) this.intervals.push(enemy.animInterval);
+        });
     }
 
     run() {
@@ -48,7 +55,9 @@ class World {
 
     startChickenCreator() {
         let chickenCreatorInterval = setInterval(() => {
-            level1.enemies.push(new Chicken());
+            let chicken = new Chicken();
+            chicken.world = this;
+            this.level.enemies.push(chicken);
         }, 5000);
         this.intervals.push(chickenCreatorInterval);
     }

@@ -16,7 +16,9 @@ function stopGame() {
 }
 
 function pauseGame() {
-    world.intervals.forEach(id => clearInterval(id));
+    world.intervals.forEach(element => {
+        clearInterval(element);
+    });
     world.paused = true;
 }
 
