@@ -9,6 +9,7 @@ body {
 }
 
 canvas {
+    position: relative;
     background-color: black;
     box-shadow: rgba(0, 0, 0, 0.5) 40px 40px 12px;
 }
