@@ -55,6 +55,7 @@ canvas {
     right: 2%;
     width: 5%;
     max-width: 32px;
+    cursor: pointer;
 }
 
 @media (max-width: 900px) and (orientation: landscape) {

@@ -9,7 +9,6 @@ class World {
     itemBar = new ItemBar(this);
     throwableObjects = [];
     coinAnimations = [];
-    // collect every timer id that is created during the game
     intervals = [];
     
 
