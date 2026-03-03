@@ -15,6 +15,35 @@ function stopGame() {
     });
 }
 
+function pauseGame() {
+    world.intervals.forEach(id => clearInterval(id));
+    world.paused = true;
+}
+
+function resumeGame() {
+    if (!world.paused) return; // already running
+
+    // reset the tracking array so we don't duplicate IDs
+    world.intervals = [];
+
+    // restart recurring logic
+    world.run();
+    world.character.animate();
+
+    // make sure all existing enemies/objects animate again
+    world.level.enemies.forEach(e => {
+        if (typeof e.animate === 'function') e.animate();
+    });
+    world.throwableObjects.forEach(o => {
+        if (typeof o.animate === 'function') o.animate();
+    });
+    world.coinAnimations.forEach(c => {
+        if (typeof c.animate === 'function') c.animate();
+    });
+
+    world.paused = false;
+}
+
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 65 || e.keyCode == 37) {
         keyboard.LEFT = true;
