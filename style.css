@@ -8,10 +8,17 @@ body {
     background-repeat: no-repeat;
 }
 
-canvas {
+.game-container {
     position: relative;
-    background-color: black;
-    box-shadow: rgba(0, 0, 0, 0.5) 40px 40px 12px;
+    width: 720px;
+    height: 480px;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
 #startscreen {
@@ -20,7 +27,7 @@ canvas {
     left: 0;
     width: 720px;
     height: 480px;
-    z-index: -1;
+    z-index: 1;   /* NICHT -1 */
 }
 
 #mute-button {
@@ -30,5 +37,9 @@ canvas {
     width: 32px;
     height: 32px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
+}
+
+.hidden {
+    display: none;
 }

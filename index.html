@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<html translate = "no">
+<html lang="en" translate="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,11 +24,15 @@
     <script src="./js/game.js" defer></script>
     <script src="./js/script.js" defer></script>
 </head>
-<body onload="init()">
+
+<body>
     <h1>El Pollo Loco by AkviS</h1>
-    <canvas width="720" height="480" id="canvas">
+    <div class="game-container">
+        <canvas width="720" height="480" id="canvas"></canvas>
+
         <img src="./img/mute.png" alt="Mute Button" id="mute-button">
         <img src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen" id="startscreen">
-    </canvas>
+    </div>
 </body>
+
 </html>
