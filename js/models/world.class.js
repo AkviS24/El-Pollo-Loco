@@ -11,6 +11,7 @@ class World {
     coinAnimations = [];
     // collect every timer id that is created during the game
     intervals = [];
+    
 
 
     constructor(canvas, keyboard) {
@@ -20,6 +21,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.gamestartSound = new Audio("./audio/game/gameStart.mp3");
     }
 
     setWorld() {
