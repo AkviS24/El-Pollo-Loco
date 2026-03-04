@@ -28,7 +28,13 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImage(this.IMAGES_WALKING[0]);
         this.x = 1800;
+        this.hitSound = new Audio("./audio/endboss/endbossApproach.wav");
+        this.hitSound.volume = 0.5;
         this.animate();
+    }
+    hit() {
+        super.hit();
+        this.hitSound.play();
     }
 
     animate() {
@@ -38,5 +44,5 @@ class Endboss extends MovableObject {
         if (this.world && this.world.intervals) {
             this.world.intervals.push(this.animInterval);
         }
-    };  
+    };
 }

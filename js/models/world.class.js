@@ -41,6 +41,7 @@ class World {
             if (enemy.moveInterval) this.intervals.push(enemy.moveInterval);
             if (enemy.statusInterval) this.intervals.push(enemy.statusInterval);
             if (enemy.animInterval) this.intervals.push(enemy.animInterval);
+            if (enemy.hitSound) sounds.push(enemy.hitSound);
         });
     }
 
@@ -119,6 +120,7 @@ class World {
         if (enemy instanceof Chicken) {
             this.chickenDeath(e, enemy);
         } else if (enemy instanceof Endboss) {
+            enemy.hitSound.play();
             this.endbossDeath(e, enemy);
         }
         this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen

@@ -34,10 +34,8 @@ class MovableObject extends DrawableObject {
         this.energy -= 2;
         if (this.energy < 0) {
             this.energy = 0;
-            world.character.dead.play();
         } else {
             this.lastHit = new Date().getTime();
-            world.character.damage.play();
         }
     }
 

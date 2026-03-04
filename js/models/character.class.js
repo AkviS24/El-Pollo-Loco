@@ -117,6 +117,16 @@ class Character extends MovableObject {
         }
     }
 
+    hit() {
+        super.hit();
+
+        if (this.energy == 0) {
+            this.dead.play();
+        } else {
+            this.damage.play();
+        }
+    }
+
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }

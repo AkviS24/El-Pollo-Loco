@@ -88,6 +88,7 @@ function createLevel1() {
 
 function restartGame() {
     stopGame();
+    sounds = [];
     world = null;
     level1 = createLevel1();
     document.getElementById("death-screen").classList.remove("death-screen-visible");
