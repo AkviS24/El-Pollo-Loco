@@ -39,7 +39,12 @@
             <p>Mit den Tasten A, oder linke Pfeiltaste, sowie D, oder der rechten Pfeiltaste, kannst du links bzw. rechts laufen </p>
             <p>Mit der Leertaste springst du und mit F werden Flaschen geworfen. Durch drücken von V kannst du neue Flaschen kaufen. Aber Vorsicht jede neue Flasche kostet dich 5 Goldmünzen</p>
             <p>Ziel des Spiels ist es, den Endboss zu vernichten bevor zu viele Küken schlüpfen und dich überrennen</p>
-            <button onclick="backToGame()">Zurück zum Spiel</button>
+            <button class="button" onclick="backToGame()">Zurück zum Spiel</button>
+        </div>
+
+        <div id="death-screen" class="death-screen">
+            <img src="./img/You won, you lost/Game Over.png" alt="Game Over" class="game-over-image">
+            <button id="restart-button" class="button" onclick="restartGame()">Neu starten</button>
         </div>
     </div>
 </body>

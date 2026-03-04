@@ -81,6 +81,37 @@ canvas {
     z-index: 2;
 }
 
+.death-screen {
+    display: none;
+}
+
+.death-screen-visible {
+    background-color: rgb(170, 116, 7);
+    border: solid 1px rgb(44, 19, 2);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.game-over-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#restart-button {
+    width: 100px;
+    position: absolute;
+    bottom: 10px;
+    left: calc(50% - 50px);
+}
+
+.button {
+    background-color:rgb(244, 75, 29);
+}
+
 @media (max-width: 900px) and (orientation: landscape) {
 
     body {

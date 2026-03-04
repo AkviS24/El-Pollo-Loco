@@ -101,6 +101,10 @@ class Character extends MovableObject {
     statusUpdate() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
+            stopGame();
+            deathScreen();
+            this.world.intervals = [];
+            this.world.level[0] = [];
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) {

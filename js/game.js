@@ -13,14 +13,12 @@ function soundPushing() {
     sounds.push(world.character.pups);
     sounds.push(world.character.move);
     sounds.push(world.character.collectSound);
-    console.log(sounds);
 }
 
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     world.gamestartSound.play();
-    console.log('My Character is: ', world.character);
     soundPushing();
 }
 
@@ -30,6 +28,17 @@ function mute() {
     } else {
         sounds.forEach((s)=> s.muted = true);
     }
+}
+
+function restartGame() {
+    document.getElementById("death-screen").classList.remove("death-screen-visible");
+    document.getElementById("death-screen").classList.add("death-screen");
+    init();
+}
+
+function deathScreen() {
+    document.getElementById("death-screen").classList.add("death-screen-visible");
+    document.getElementById("death-screen").classList.remove("death-screen");
 }
 
 function help() {
