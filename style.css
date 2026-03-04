@@ -96,9 +96,10 @@ canvas {
 
 .game-over-image {
     width: 100%;
+    max-width: 720px;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
+    object-fit: contain;
+    object-position: center; 
 }
 
 #restart-button {
