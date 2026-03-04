@@ -138,6 +138,7 @@ class World {
             this.coinAnimations.push(new CoinAnimation(this, enemy.x, enemy.y));
             this.level.enemies.splice(e, 1);
             console.log("Endboss defeated");
+            win();
             stopGame();
         }
     }

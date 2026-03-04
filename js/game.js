@@ -14,7 +14,6 @@ function soundPushing() {
     sounds.push(world.character.move);
     sounds.push(world.character.collectSound);
 }
-
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
@@ -28,6 +27,25 @@ function mute() {
     } else {
         sounds.forEach((s)=> s.muted = true);
     }
+}
+
+function newstartGame() {
+    document.getElementById("winner-info").classList.add("winner-info");
+    document.getElementById("winner-info").classList.remove("winner-info-visible");
+    document.getElementById("win-screen").classList.add("win-screen");
+    document.getElementById("win-screen").classList.remove("win-screen-visible");
+    restartGame();
+}
+
+function winnerInfo() {
+    document.getElementById("winner-info").classList.add("winner-info-visible");
+    document.getElementById("winner-info").classList.remove("winner-info");
+}
+
+function win() {
+    document.getElementById("win-screen").classList.add("win-screen-visible");
+    document.getElementById("win-screen").classList.remove("win-screen");
+    setTimeout(winnerInfo, 5000);
 }
 
 function restartGame() {
