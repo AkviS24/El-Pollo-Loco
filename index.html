@@ -27,12 +27,20 @@
 </head>
 
 <body>
-    <h1>El Pollo Loco by AkviS</h1>
+    
     <div class="game-container">
         <canvas width="720" height="480" id="canvas"></canvas>
 
         <img src="./img/mute.png" alt="Mute Button" id="mute-button" onclick="mute()">
+        <img src="./img/help.png" alt="Help Button" id="help-button" onclick="help()">
         <img src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen" id="startscreen">
+        <div id="help-menu" class="help-menu">
+            <h1>El Pollo Loco by AkviS</h1>
+            <p>Mit den Tasten A, oder linke Pfeiltaste, sowie D, oder der rechten Pfeiltaste, kannst du links bzw. rechts laufen </p>
+            <p>Mit der Leertaste springst du und mit F werden Flaschen geworfen. Durch drücken von V kannst du neue Flaschen kaufen. Aber Vorsicht jede neue Flasche kostet dich 5 Goldmünzen</p>
+            <p>Ziel des Spiels ist es, den Endboss zu vernichten bevor zu viele Küken schlüpfen und dich überrennen</p>
+            <button onclick="backToGame()">Zurück zum Spiel</button>
+        </div>
     </div>
 </body>
 

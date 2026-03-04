@@ -32,6 +32,18 @@ function mute() {
     }
 }
 
+function help() {
+    document.getElementById("help-menu").classList.add("help-menu-visible");
+    document.getElementById("help-menu").classList.remove("help-menu");
+    pauseGame();
+}
+
+function backToGame() {
+    document.getElementById("help-menu").classList.remove("help-menu-visible");
+    document.getElementById("help-menu").classList.add("help-menu");
+    resumeGame();
+}
+
 function stopGame() {
     world.intervals.forEach(element => {
         clearInterval(element);
