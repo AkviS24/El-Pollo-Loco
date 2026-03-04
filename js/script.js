@@ -1,4 +1,3 @@
-console.log("Script loaded");
 
 document.addEventListener("DOMContentLoaded", () => {
     const startscreen = document.getElementById("startscreen");
