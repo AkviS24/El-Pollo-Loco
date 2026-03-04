@@ -72,6 +72,9 @@ canvas {
 }
 
 .help-menu-visible {
+    padding: 16px;
+    background-color: rgb(170, 116, 7);
+    border: solid 1px rgb(44, 19, 2);
     position: absolute;
     width: 100%;
     height: 100%;
