@@ -104,7 +104,6 @@ class Character extends MovableObject {
             stopGame();
             deathScreen();
             this.world.intervals = [];
-            this.world.level[0] = [];
         } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT);
         } else if (this.isAboveGround()) {

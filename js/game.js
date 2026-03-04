@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let sounds = [];
+let masterVolume = 0.2;
 
 function soundPushing() {
     sounds.push(world.gamestartSound);
@@ -13,6 +14,7 @@ function soundPushing() {
     sounds.push(world.character.pups);
     sounds.push(world.character.move);
     sounds.push(world.character.collectSound);
+    sounds.forEach((element) => element.volume = masterVolume);
 }
 function init() {
     canvas = document.getElementById("canvas");
@@ -133,6 +135,7 @@ function resumeGame() {
     // restart recurring logic
     world.run();
     world.character.animate();
+    world.character.applyGravity();
 
     // make sure all existing enemies/objects animate again
     world.level.enemies.forEach(e => {
