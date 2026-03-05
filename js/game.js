@@ -1,4 +1,5 @@
 let canvas;
+let gameContainer = document.getElementById("game-container");
 let world;
 let keyboard = new Keyboard();
 let sounds = [];
@@ -24,11 +25,24 @@ function init() {
     soundPushing();
 }
 
+if (window.matchMedia("(pointer: coarse)").matches) {
+    document.getElementById("mobile-controls").classList.remove("mobile-controls");
+    document.getElementById("mobile-controls").classList.add("mobile-controls-visible");
+}
+
 function mute() {
     if (sounds[0].muted) {
-        sounds.forEach((s)=> s.muted = false);
+        sounds.forEach((s) => s.muted = false);
     } else {
-        sounds.forEach((s)=> s.muted = true);
+        sounds.forEach((s) => s.muted = true);
+    }
+}
+
+function fullscreen() {
+    if (!document.fullscreenElement) {
+        gameContainer.requestFullscreen();
+    } else {
+        document.exitFullscreen();
     }
 }
 
@@ -54,35 +68,35 @@ function win() {
 function createLevel1() {
     return new Level(
         [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Endboss()
-    ],
-    [
-        new Cloud(),
-    ],
-    [
-        new BackgroundObjects("./img/5_background/layers/air.png", -720),
-        new BackgroundObjects("./img/5_background/layers/3_third_layer/2.png", -720),
-        new BackgroundObjects("./img/5_background/layers/2_second_layer/2.png", -720),
-        new BackgroundObjects("./img/5_background/layers/1_first_layer/2.png", -720),
+            new Chicken(),
+            new Chicken(),
+            new Chicken(),
+            new Endboss()
+        ],
+        [
+            new Cloud(),
+        ],
+        [
+            new BackgroundObjects("./img/5_background/layers/air.png", -720),
+            new BackgroundObjects("./img/5_background/layers/3_third_layer/2.png", -720),
+            new BackgroundObjects("./img/5_background/layers/2_second_layer/2.png", -720),
+            new BackgroundObjects("./img/5_background/layers/1_first_layer/2.png", -720),
 
-        new BackgroundObjects("./img/5_background/layers/air.png", 0),
-        new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 0),
-        new BackgroundObjects("./img/5_background/layers/2_second_layer/1.png", 0),
-        new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 0),
+            new BackgroundObjects("./img/5_background/layers/air.png", 0),
+            new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 0),
+            new BackgroundObjects("./img/5_background/layers/2_second_layer/1.png", 0),
+            new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 0),
 
-        new BackgroundObjects("./img/5_background/layers/air.png", 719),
-        new BackgroundObjects("./img/5_background/layers/3_third_layer/2.png", 719),
-        new BackgroundObjects("./img/5_background/layers/2_second_layer/2.png", 719),
-        new BackgroundObjects("./img/5_background/layers/1_first_layer/2.png", 719),
+            new BackgroundObjects("./img/5_background/layers/air.png", 719),
+            new BackgroundObjects("./img/5_background/layers/3_third_layer/2.png", 719),
+            new BackgroundObjects("./img/5_background/layers/2_second_layer/2.png", 719),
+            new BackgroundObjects("./img/5_background/layers/1_first_layer/2.png", 719),
 
-        new BackgroundObjects("./img/5_background/layers/air.png", 719 * 2),
-        new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 719 * 2),
-        new BackgroundObjects("./img/5_background/layers/2_second_layer/1.png", 719 * 2),
-        new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 719 * 2)
-    ]
+            new BackgroundObjects("./img/5_background/layers/air.png", 719 * 2),
+            new BackgroundObjects("./img/5_background/layers/3_third_layer/1.png", 719 * 2),
+            new BackgroundObjects("./img/5_background/layers/2_second_layer/1.png", 719 * 2),
+            new BackgroundObjects("./img/5_background/layers/1_first_layer/1.png", 719 * 2)
+        ]
     );
 }
 
@@ -198,4 +212,48 @@ window.addEventListener("keyup", (e) => {
     if (e.keyCode == 86) {
         keyboard.V = false;
     }
+});
+
+
+
+document.getElementById("leftBTN").addEventListener("touchstart", () => {
+    keyboard.LEFT = true;
+});
+
+document.getElementById("rightBTN").addEventListener("touchstart", () => {
+    keyboard.RIGHT = true;
+});
+
+document.getElementById("buyBTN").addEventListener("touchstart", () => {
+    keyboard.V = true;
+});
+
+document.getElementById("attackBTN").addEventListener("touchstart", () => {
+    keyboard.F = true;
+});
+
+document.getElementById("jumpBTN").addEventListener("touchstart", () => {
+    keyboard.SPACE = true;
+});
+
+
+
+document.getElementById("leftBTN").addEventListener("touchend", () => {
+    keyboard.LEFT = false;
+});
+
+document.getElementById("rightBTN").addEventListener("touchend", () => {
+    keyboard.RIGHT = false;
+});
+
+document.getElementById("buyBTN").addEventListener("touchend", () => {
+    keyboard.V = false;
+});
+
+document.getElementById("attackBTN").addEventListener("touchend", () => {
+    keyboard.F = false;
+});
+
+document.getElementById("jumpBTN").addEventListener("touchend", () => {
+    keyboard.SPACE = false;
 });

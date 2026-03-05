@@ -7,3 +7,4 @@ document.addEventListener("DOMContentLoaded", () => {
         init();
     }, 5000);
 });
+

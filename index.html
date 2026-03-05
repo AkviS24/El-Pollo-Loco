@@ -28,9 +28,9 @@
 
 <body>
     
-    <div class="game-container">
+    <div id="game-container" class="game-container">
         <canvas width="720" height="480" id="canvas"></canvas>
-
+        <button id="fullscreen-button" onclick="fullscreen()">🎞️</button>
         <img src="./img/mute.png" alt="Mute Button" id="mute-button" onclick="mute()">
         <img src="./img/help.png" alt="Help Button" id="help-button" onclick="help()">
         <img src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen" id="startscreen">
@@ -56,6 +56,18 @@
                 <h1 class="h2">Herzlichen Glückwunsch</h1>
                 <p class="p">Derzeit baue ich noch an Erweiterungen. Bei Interesse bin ich offen für Vorschläge, einfach an meine Email senden <a href="mailto:akvis2022@gmail.com">EMAIL</a></p>
                 <button class="button" onclick="newstartGame()">Neu starten</button>
+            </div>
+        </div>
+
+        <div id="mobile-controls" class="mobile-controls">
+            <div class="move-buttons">
+                <button class="mobile-buttons" id="leftBTN">⬅️</button>
+                <button class="mobile-buttons" id="rightBTN">➡️</button>
+            </div>
+            <div class="attack-buttons">
+                <button class="mobile-buttons" id="buyBTN">🪙</button>
+                <button class="mobile-buttons" id="attackBTN">⚔️</button>
+                <button class="mobile-buttons" id="jumpBTN">⏫</button>
             </div>
         </div>
     </div>
