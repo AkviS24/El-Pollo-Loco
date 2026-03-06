@@ -1,5 +1,15 @@
+/**
+ * Repräsentiert ein werfbares Objekt im Spiel (z.B. eine Flasche).
+ * Erweitert MovableObject um Flug- und Rotationsanimation.
+ * 
+ * @extends MovableObject
+ */
 class ThrowableObject extends MovableObject {
 
+    /**
+     * Offset für Kollisionserkennung
+     * @type {{top: number, bottom: number, left: number, right: number}}
+     */
     offset = {
         top: 0,
         bottom: 0,
@@ -7,6 +17,10 @@ class ThrowableObject extends MovableObject {
         right: 0
     };
 
+    /**
+     * Array von Bildpfaden für die Rotationsanimation
+     * @type {string[]}
+     */
     IMAGES_ROTATION = [
         "./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
         "./img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -14,6 +28,13 @@ class ThrowableObject extends MovableObject {
         "./img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png"
     ];
 
+    /**
+     * Erstellt ein neues werfbares Objekt an der angegebenen Position.
+     * Lädt Bilder, startet die Flugbewegung und die Rotationsanimation.
+     * 
+     * @param {number} x - Start-X-Position
+     * @param {number} y - Start-Y-Position
+     */
     constructor(x, y) {
         super();
         this.x = x;
@@ -26,6 +47,11 @@ class ThrowableObject extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Startet den Wurf des Objekts.
+     * Setzt vertikale und horizontale Geschwindigkeit und wendet Gravitation an.
+     * Fügt das Intervall der Welt-Intervalle hinzu.
+     */
     throw() {
         this.speedY = 30;
         this.speed = 10;
@@ -38,6 +64,11 @@ class ThrowableObject extends MovableObject {
         }
     }
 
+    /**
+     * Startet die Rotationsanimation des Objekts.
+     * Aktualisiert das Bild alle 100 ms.
+     * Fügt das Intervall der Welt-Intervalle hinzu.
+     */
     animate() {
         let animId = setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATION);
