@@ -1,4 +1,15 @@
+/**
+ * Repräsentiert eine Statusleiste (z.B. Lebensanzeige) im Spiel.
+ * Zeigt unterschiedliche Bilder abhängig vom aktuellen Prozentsatz.
+ * 
+ * @extends DrawableObject
+ */
 class StatusBar extends DrawableObject {
+    
+    /**
+     * Array von Bildpfaden für verschiedene Prozentstufen (0-100%).
+     * @type {string[]}
+     */
     IMAGES = [
         "./img/7_statusbars/1_statusbar/2_statusbar_health/blue/0.png",
         "./img/7_statusbars/1_statusbar/2_statusbar_health/blue/20.png",
@@ -8,8 +19,12 @@ class StatusBar extends DrawableObject {
         "./img/7_statusbars/1_statusbar/2_statusbar_health/blue/100.png"
     ];
 
+    /** @type {number} Aktueller Prozentsatz der Statusleiste (0-100) */
     percentage = 100;
 
+    /**
+     * Erstellt eine neue Statusleiste, lädt Bilder und setzt Position & Größe.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES);
@@ -20,12 +35,22 @@ class StatusBar extends DrawableObject {
         this.setPercentage(100);
     }
 
+    /**
+     * Setzt den Prozentsatz der Statusleiste und aktualisiert das Bild.
+     * 
+     * @param {number} percentage - Neuer Prozentsatz (0-100)
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.resolveImageIndex()];
         this.img = this.imageCache[path];
     }
 
+    /**
+     * Bestimmt den Index des Bildes im Array basierend auf dem aktuellen Prozentsatz.
+     * 
+     * @returns {number} Index des passenden Statusbar-Bildes
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;
