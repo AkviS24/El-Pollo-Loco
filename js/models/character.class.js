@@ -1,19 +1,52 @@
+/**
+ * Hauptcharakter des Spiels.
+ * Der Character kann laufen, springen, Schaden nehmen und sterben.
+ * Verwaltet außerdem Animationen, Sounds und Spielerzustände.
+ * 
+ * @extends MovableObject
+ */
 class Character extends MovableObject {
 
+    /** @type {number} Höhe des Charakters */
     height = 250;
+
+    /** @type {number} Y-Position des Charakters */
     y = 180;
+
+    /** @type {World} Referenz zur aktuellen Spielwelt */
     world;
+
+    /** @type {number} Bewegungsgeschwindigkeit */
     speed = 5;
+
+    /** @type {number} Anzahl gesammelter Coins */
     coins = 0;
+
+    /** @type {number} Anzahl verfügbarer Flaschen */
     bottles = 10;
+
+    /** @type {HTMLAudioElement} Sound wenn die Flaschen oder coins verbraucht sind */
     pups = new Audio("./audio/throwable/pups.mp3");
+
+    /** @type {HTMLAudioElement} Sound beim werfen einer Flasche */
     throwing = new Audio("./audio/throwable/bottleBreak.mp3");
+
+    /** @type {HTMLAudioElement} Sound wenn der Charakter Schaden nimmt */
     damage = new Audio("./audio/character/characterDamage.mp3");
+
+    /** @type {HTMLAudioElement} Sound beim Tod des Charakters */
     dead = new Audio("./audio/character/characterDead.wav");
+
+    /** @type {HTMLAudioElement} Sound beim Springen */
     hops = new Audio("./audio/character/characterJump.wav");
+
+    /** @type {HTMLAudioElement} Sound beim Laufen */
     move = new Audio("./audio/character/characterRun.mp3");
+
+    /** @type {HTMLAudioElement} Sound beim erhalten einer Coin-Belohnung */
     collectSound = new Audio("./audio/collectibles/collectSound.wav");
 
+    /** @type {string[]} Bilder für die Laufanimation */
     IMAGES_WALKING = [
         "./img/2_character_pepe/2_walk/W-21.png",
         "./img/2_character_pepe/2_walk/W-22.png",
@@ -23,6 +56,7 @@ class Character extends MovableObject {
         "./img/2_character_pepe/2_walk/W-26.png"
     ];
 
+    /** @type {string[]} Bilder für die Sprunganimation */
     IMAGES_JUMPING = [
         "./img/2_character_pepe/3_jump/J-31.png",
         "./img/2_character_pepe/3_jump/J-32.png",
@@ -35,6 +69,7 @@ class Character extends MovableObject {
         "./img/2_character_pepe/3_jump/J-39.png",
     ];
 
+    /** @type {string[]} Bilder für die Todesanimation */
     IMAGES_DEAD = [
         "./img/2_character_pepe/5_dead/D-51.png",
         "./img/2_character_pepe/5_dead/D-52.png",
@@ -45,12 +80,19 @@ class Character extends MovableObject {
         "./img/2_character_pepe/5_dead/D-57.png"
     ];
 
+    /** @type {string[]} Bilder für die Schaden-Animation */
     IMAGES_HURT = [
         "./img/2_character_pepe/4_hurt/H-41.png",
         "./img/2_character_pepe/4_hurt/H-42.png",
         "./img/2_character_pepe/4_hurt/H-43.png",
     ];
 
+    /**
+     * Kollisions-Offset des Charakters.
+     * Wird verwendet um präzisere Kollisionen zu berechnen.
+     * 
+     * @type {{top:number, bottom:number, left:number, right:number}}
+     */
     offset = {
         top: 100,
         bottom: 10,
@@ -58,7 +100,10 @@ class Character extends MovableObject {
         right: 10
     };
 
-
+    /**
+     * Erstellt einen neuen Character.
+     * Lädt alle Animationen und aktiviert die Gravitation.
+     */
     constructor() {
         super();
         this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
@@ -69,6 +114,10 @@ class Character extends MovableObject {
         this.applyGravity();
     }
 
+    /**
+     * Startet die Animations- und Bewegungsintervalle des Charakters.
+     * Aktualisiert Bewegung und Status regelmäßig.
+     */
     animate() {
         this.moveInterval = setInterval(() => {
             this.moveCharacter();
@@ -83,6 +132,10 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Verarbeitet die Bewegung des Charakters
+     * basierend auf Tastatureingaben.
+     */
     moveCharacter() {
         if (this.canMoveRight()) {
             this.moveRight();
@@ -98,6 +151,10 @@ class Character extends MovableObject {
         this.world.camera_x = -this.x + 100; // Kamera folgt dem Charakter, indem die ganze Welt verschoben wird
     }
 
+    /**
+     * Aktualisiert den aktuellen Status des Charakters
+     * und spielt die entsprechende Animation.
+     */
     statusUpdate() {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
@@ -117,6 +174,10 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Verarbeitet Schaden am Charakter.
+     * Spielt je nach Zustand einen Schaden- oder Todessound ab.
+     */
     hit() {
         super.hit();
 
@@ -127,10 +188,20 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * Prüft ob der Charakter nach rechts laufen darf.
+     * 
+     * @returns {boolean} True wenn Bewegung nach rechts möglich ist
+     */
     canMoveRight() {
         return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
     }
 
+    /**
+     * Prüft ob der Charakter nach links laufen darf.
+     * 
+     * @returns {boolean} True wenn Bewegung nach links möglich ist
+     */
     canMoveLeft() {
         return this.world.keyboard.LEFT && this.x > -420;
     }
