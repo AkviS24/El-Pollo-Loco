@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/movable-object.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/movable-object.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Repräsentiert ein bewegliches Objekt im Spiel.
+ * Erweitert DrawableObject um Bewegung, Gravitation, Kollision und Lebenszustand.
+ * 
+ * @extends DrawableObject
+ */
+class MovableObject extends DrawableObject {
+
+    /** @type {number} Geschwindigkeit in horizontaler Richtung */
+    speed = 0.15;
+
+    /** @type {boolean} TRUE, wenn das Objekt in die entgegengesetzte Richtung zeigt */
+    otherDirection = false;
+
+    /** @type {number} Geschwindigkeit in vertikaler Richtung */
+    speedY = 0;
+
+    /** @type {number} Beschleunigung nach unten (Gravitation) */
+    acceleration = 2.5;
+
+    /** @type {number} Lebensenergie des Objekts */
+    energy = 100;
+
+    /** @type {number} Zeitstempel des letzten Treffers in ms */
+    lastHit = 0;
+
+    /** @type {number} Interval-ID der Gravitation */
+    gravityInterval;
+
+    /**
+     * Wendet Gravitation auf das Objekt an.
+     * Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben springt.
+     */
+    applyGravity() {
+        let id = setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;
+                this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+
+        this.gravityInterval = id;
+
+        if (this.world &amp;&amp; this.world.intervals) {
+            this.world.intervals.push(id);
+        }
+    }
+
+    /**
+     * Prüft, ob dieses Objekt mit einem anderen kollidiert.
+     * 
+     * @param {MovableObject} mo - Das andere bewegliche Objekt
+     * @returns {boolean} TRUE, wenn eine Kollision stattfindet
+     */
+    isColliding(mo) {
+        return this.x + this.offset.left + this.width - this.offset.right - this.offset.left > mo.x + mo.offset.left &amp;&amp;
+            this.y + this.offset.top + this.height - this.offset.top - this.offset.bottom > mo.y + mo.offset.top &amp;&amp;
+            this.x + this.offset.left &lt; mo.x + mo.offset.left + mo.width - mo.offset.left - mo.offset.right &amp;&amp;
+            this.y + this.offset.top &lt; mo.y + mo.offset.top + mo.height - mo.offset.top - mo.offset.bottom;
+    }
+
+    /**
+     * Reduziert die Energie des Objekts bei einem Treffer.
+     * Setzt lastHit, wenn das Objekt noch Energie hat.
+     */
+    hit() {
+        this.energy -= 2;
+        if (this.energy &lt; 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    /**
+     * Prüft, ob das Objekt gerade verletzt wurde.
+     * 
+     * @returns {boolean} TRUE, wenn weniger als 1 Sekunde seit dem letzten Treffer vergangen ist
+     */
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; // Differenz in ms
+        timePassed = timePassed / 1000; // Umrechnung auf Sekunden
+        return timePassed &lt; 1;
+    }
+
+    /**
+     * Prüft, ob das Objekt keine Energie mehr hat.
+     * 
+     * @returns {boolean} TRUE, wenn die Energie 0 ist
+     */
+    isDead() {
+        return this.energy == 0;
+    }
+
+    /**
+     * Prüft, ob das Objekt sich über dem Boden befindet.
+     * ThrowableObjects fliegen immer über dem Boden.
+     * 
+     * @returns {boolean} TRUE, wenn das Objekt über dem Boden ist
+     */
+    isAboveGround() {
+        if (this instanceof ThrowableObject) {
+            return true;
+        } else {
+            return this.y &lt; 180;
+        }
+    }
+
+    /** Bewegt das Objekt nach rechts */
+    moveRight() {
+        this.x += this.speed;
+    }
+
+    /** Bewegt das Objekt nach links */
+    moveLeft() {
+        this.x -= this.speed;
+    }
+
+    /** Lässt, während das Objekt springt den, den Sprungsound abspielen und setzt die vertikale Geschwindigkeit */
+    jump() {
+        world.character.hops.play();
+        this.speedY = 30;
+    }
+
+    /**
+     * Spielt eine Animation ab, indem das nächste Bild aus einem Array gesetzt wird.
+     * 
+     * @param {string[]} images - Array von Bildpfaden
+     */
+    playAnimation(images) {
+        let i = this.currentImage % images.length; // Wenn am Ende des Arrays fängt er wieder von vorne an
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="ItemBar.html">ItemBar</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToGame">backToGame</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#deathScreen">deathScreen</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#gameContainer">gameContainer</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#masterVolume">masterVolume</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#newstartGame">newstartGame</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#soundPushing">soundPushing</a></li><li><a href="global.html#sounds">sounds</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winnerInfo">winnerInfo</a></li><li><a href="global.html#world">world</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Mar 06 2026 17:45:00 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: models/drawable-object.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: models/drawable-object.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Basisklasse für alle zeichnbaren Objekte im Spiel.
+ * Stellt grundlegende Eigenschaften wie Position, Größe
+ * sowie Funktionen zum Laden und Zeichnen von Bildern bereit.
+ */
+class DrawableObject {
+
+    /** @type {number} X-Position des Objekts */
+    x = 120;
+
+    /** @type {number} Y-Position des Objekts */
+    y = 280;
+
+    /** @type {HTMLImageElement} Aktuelles Bild des Objekts */
+    img;
+
+    /** @type {number} Höhe des Objekts */
+    height = 150;
+
+    /** @type {number} Breite des Objekts */
+    width = 100;
+
+    /**
+     * Cache für bereits geladene Bilder.
+     * Wird verwendet um Animationen effizient darzustellen.
+     * 
+     * @type {Object.&lt;string, HTMLImageElement>}
+     */
+    imageCache = {};
+
+    /** @type {number} Index des aktuell angezeigten Animationsbildes */
+    currentImage = 0;
+
+    /**
+     * Zeichnet das Objekt auf das Canvas.
+     * 
+     * @param {CanvasRenderingContext2D} ctx - Der Canvas Rendering Context
+     */
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    /**
+     * Zeichnet einen Debug-Rahmen um das Objekt.
+     * Wird hauptsächlich für Kollisionsboxen verwendet.
+     * 
+     * @param {CanvasRenderingContext2D} ctx - Der Canvas Rendering Context
+     */
+    drawFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = "1";
+            ctx.strokeStyle = "transparent";
+            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.left - this.offset.right, this.height - this.offset.top - this.offset.bottom);
+            ctx.stroke();
+        }   
+    }
+
+    /**
+     * Lädt ein einzelnes Bild und setzt es als aktuelles Bild.
+     * 
+     * @param {string} path - Pfad zur Bilddatei
+     */
+    loadImage(path) {
+        this.img = new Image();
+        this.img.src = path;
+    }
+
+    /**
+     * Lädt mehrere Bilder und speichert sie im Image-Cache.
+     * Wird hauptsächlich für Animationen verwendet.
+     * 
+     * @param {string[]} arr - Array mit Bildpfaden
+     */
+    loadImages(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
+        });
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="ItemBar.html">ItemBar</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToGame">backToGame</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#deathScreen">deathScreen</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#gameContainer">gameContainer</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#masterVolume">masterVolume</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#newstartGame">newstartGame</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#soundPushing">soundPushing</a></li><li><a href="global.html#sounds">sounds</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winnerInfo">winnerInfo</a></li><li><a href="global.html#world">world</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Mar 06 2026 17:45:00 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
