@@ -1,10 +1,28 @@
+/**
+ * @fileoverview Hauptskript für das Spiel, inklusive Initialisierung, Steuerung, Sound und UI.
+ */
+
+/** @type {HTMLCanvasElement} Canvas-Element für das Spiel */
 let canvas;
+
+/** @type {HTMLElement} Container, der das Spiel enthält */
 let gameContainer = document.getElementById("game-container");
+
+/** @type {World} Aktuelle Spielwelt */
 let world;
+
+/** @type {Keyboard} Tastatursteuerung */
 let keyboard = new Keyboard();
+
+/** @type {Audio[]} Array aller Sounds im Spiel */
 let sounds = [];
+
+/** @type {number} Lautstärke-Masterwert für alle Sounds (0.0 - 1.0) */
 let masterVolume = 0.2;
 
+/**
+ * Fügt alle wichtigen Sounds der Spielwelt zum Sounds-Array hinzu und setzt die Lautstärke.
+ */
 function soundPushing() {
     sounds.push(world.gamestartSound);
     sounds.push(world.character.pups);
@@ -17,6 +35,10 @@ function soundPushing() {
     sounds.push(world.character.collectSound);
     sounds.forEach((element) => element.volume = masterVolume);
 }
+
+/**
+ * Initialisiert das Spiel: Canvas, Welt, Level und Sounds.
+ */
 function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
@@ -25,11 +47,17 @@ function init() {
     soundPushing();
 }
 
+/**
+ * Aktiviert die mobilen Steuerungselemente, falls der Nutzer ein Touch-Gerät benutzt.
+ */
 if (window.matchMedia("(pointer: coarse)").matches) {
     document.getElementById("mobile-controls").classList.remove("mobile-controls");
     document.getElementById("mobile-controls").classList.add("mobile-controls-visible");
 }
 
+/**
+ * Schaltet alle Sounds stumm oder wieder an.
+ */
 function mute() {
     if (sounds[0].muted) {
         sounds.forEach((s) => s.muted = false);
@@ -38,6 +66,9 @@ function mute() {
     }
 }
 
+/**
+ * Aktiviert den Vollbildmodus für das Spiel oder verlässt ihn.
+ */
 function fullscreen() {
     if (!document.fullscreenElement) {
         gameContainer.requestFullscreen();
@@ -46,6 +77,9 @@ function fullscreen() {
     }
 }
 
+/**
+ * Startet ein neues Spiel, blendet den Gewinnbildschirm aus und initialisiert die Welt neu.
+ */
 function newstartGame() {
     document.getElementById("winner-info").classList.add("winner-info");
     document.getElementById("winner-info").classList.remove("winner-info-visible");
@@ -54,17 +88,27 @@ function newstartGame() {
     restartGame();
 }
 
+/**
+ * Zeigt die Gewinnerinformationen nach einem Sieg an.
+ */
 function winnerInfo() {
     document.getElementById("winner-info").classList.add("winner-info-visible");
     document.getElementById("winner-info").classList.remove("winner-info");
 }
 
+/**
+ * Zeigt den Gewinnbildschirm an und startet nach 5 Sekunden die Gewinnerinfo.
+ */
 function win() {
     document.getElementById("win-screen").classList.add("win-screen-visible");
     document.getElementById("win-screen").classList.remove("win-screen");
     setTimeout(winnerInfo, 5000);
 }
 
+/**
+ * Erstellt das Level 1 mit Gegnern, Wolken und Hintergrundobjekten.
+ * @returns {Level} Neues Level-Objekt
+ */
 function createLevel1() {
     return new Level(
         [
@@ -100,6 +144,9 @@ function createLevel1() {
     );
 }
 
+/**
+ * Startet das Spiel neu: stoppt die alte Welt, leert Sounds und erstellt das Level neu.
+ */
 function restartGame() {
     stopGame();
     sounds = [];
@@ -110,23 +157,35 @@ function restartGame() {
     init();
 }
 
+/**
+ * Zeigt den Tod-Bildschirm an.
+ */
 function deathScreen() {
     document.getElementById("death-screen").classList.add("death-screen-visible");
     document.getElementById("death-screen").classList.remove("death-screen");
 }
 
+/**
+ * Zeigt das Hilfe-Menü an und pausiert das Spiel.
+ */
 function help() {
     document.getElementById("help-menu").classList.add("help-menu-visible");
     document.getElementById("help-menu").classList.remove("help-menu");
     pauseGame();
 }
 
+/**
+ * Schließt das Hilfe-Menü und setzt das Spiel fort.
+ */
 function backToGame() {
     document.getElementById("help-menu").classList.remove("help-menu-visible");
     document.getElementById("help-menu").classList.add("help-menu");
     resumeGame();
 }
 
+/**
+ * Stoppt das Spiel: Animationsframes abbrechen und alle Intervalle löschen.
+ */
 function stopGame() {
     cancelAnimationFrame(world.animationFrame);
     world.intervals.forEach(element => {
@@ -134,6 +193,9 @@ function stopGame() {
     });
 }
 
+/**
+ * Pausiert das Spiel, indem alle Intervalle gestoppt werden.
+ */
 function pauseGame() {
     world.intervals.forEach(element => {
         clearInterval(element);
@@ -141,6 +203,9 @@ function pauseGame() {
     world.paused = true;
 }
 
+/**
+ * Setzt das Spiel fort nach einer Pause, startet Animationen und Intervalle neu.
+ */
 function resumeGame() {
     if (!world.paused) return; // already running
 
@@ -166,6 +231,9 @@ function resumeGame() {
     world.paused = false;
 }
 
+/**
+ * Event-Listener für Tastendrücke, setzt die entsprechenden Keyboard-Flags.
+ */
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 65 || e.keyCode == 37) {
         keyboard.LEFT = true;
@@ -190,6 +258,9 @@ window.addEventListener("keydown", (e) => {
     }
 });
 
+/**
+ * Event-Listener für Tastenloslassen, setzt die Keyboard-Flags zurück.
+ */
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 65 || e.keyCode == 37) {
         keyboard.LEFT = false;
@@ -214,8 +285,9 @@ window.addEventListener("keyup", (e) => {
     }
 });
 
-
-
+/**
+ * Touch-Event-Listener für mobile Steuerung: setzen der Keyboard-Flags bei Berührung.
+ */
 document.getElementById("leftBTN").addEventListener("touchstart", () => {
     keyboard.LEFT = true;
 });
@@ -236,8 +308,9 @@ document.getElementById("jumpBTN").addEventListener("touchstart", () => {
     keyboard.SPACE = true;
 });
 
-
-
+/**
+ * Touch-Event-Listener für mobile Steuerung: zurücksetzen der Keyboard-Flags bei Touch-Ende.
+ */
 document.getElementById("leftBTN").addEventListener("touchend", () => {
     keyboard.LEFT = false;
 });
