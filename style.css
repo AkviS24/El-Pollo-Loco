@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Gravitas One';
+    src: url('/fonts/GravitasOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Sorgt für besseres Laden */
+}
+
 body {
     margin: 0;
     display: flex;
@@ -9,6 +17,7 @@ body {
     background-repeat: no-repeat;
     height: 100vh;
     overflow: hidden;
+    font-family: 'Gravitas One', cursive;
 }
 
 .hidden {
@@ -209,6 +218,7 @@ canvas {
 
 .h2 {
     color: white;
+    font-family: 'Gravitas One', sans-serif;
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
