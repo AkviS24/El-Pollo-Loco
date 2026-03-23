@@ -27,31 +27,39 @@
 </head>
 
 <body>
-    
+
     <div id="game-container" class="game-container">
         <canvas width="720" height="480" id="canvas"></canvas>
-        <button id="fullscreen-button" onclick="fullscreen()">🎞️</button>
-        <img src="./img/mute.png" alt="Mute Button" id="mute-button" onclick="mute()">
-        <img src="./img/help.png" alt="Help Button" id="help-button" onclick="help()">
+        <div class="icon-bar">
+            <img src="./img/icons/fullscreen-icon.png" class="icon" alt="Fullscreen Button" id="fullscreen-button" onclick="fullscreen()">
+            <img src="./img/icons/mute-icon.png" class="icon" alt="Mute Button" id="mute-button" onclick="mute()">
+            <img src="./img/icons/help-icon.png" class="icon" alt="Help Button" id="help-button" onclick="help()">
+        </div>
         <img src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen" id="startscreen">
         <div id="help-menu" class="help-menu">
             <button class="x-button" onclick="backToGame()">X</button>
             <h1>El Pollo Loco by AkviS</h1>
             <h2 class="h2">Wie du mit Pepe läufst</h2>
-            <p class="p">Mit den Tasten A, oder linke Pfeiltaste, sowie D, oder der rechten Pfeiltaste, kannst du links bzw. rechts laufen </p>
+            <p class="p">Mit den Tasten A, oder linke Pfeiltaste, sowie D, oder der rechten Pfeiltaste, kannst du links
+                bzw. rechts laufen </p>
             <h2 class="h2">Wie du mit Pepe springst, Flaschen wirfst und neue Flaschen erhälst</h2>
-            <p class="p">Mit der Leertaste springst du und mit F werden Flaschen geworfen. Durch drücken von V kannst du neue Flaschen kaufen. Aber Vorsicht jede neue Flasche kostet dich 5 Goldmünzen</p>
+            <p class="p">Mit der Leertaste springst du und mit F werden Flaschen geworfen. Durch drücken von V kannst du
+                neue Flaschen kaufen. Aber Vorsicht jede neue Flasche kostet dich 5 Goldmünzen</p>
             <h2 class="h2">Wie du das Spiel gewinnst</h2>
-            <p class="p">Ziel des Spiels ist es, den Endboss zu vernichten bevor zu viele Küken schlüpfen und dich überrennen</p>
-            <a href="./impressum.html" class="button">Impressum</a>   <a href="./datenschutz.html" class="button">Datenschutz</a>
+            <p class="p">Ziel des Spiels ist es, den Endboss zu vernichten bevor zu viele Küken schlüpfen und dich
+                überrennen</p>
+            <a href="./impressum.html" class="button">Impressum</a> <a href="./datenschutz.html"
+                class="button">Datenschutz</a>
         </div>
 
         <div id="start-screen" class="start-screen">
             <img src="./img/2_character_pepe/1_idle/idle/">
             <div class="start-text">
                 <h1>Willkommen bei Pollo Loco by AkviS</h1>
-                <p>Das verrückte Hühnchen stachelt Pepes Hühner gegen Ihn auf. Veruche das verrückte Hühnchen mit deinen Salsa Flaschen zu erledigen, bevor du von der
-                    Hühnerarmada überrannt wirst. Du solltest dabei versuchen deine eigenen Hühner zu verschonen, denn immmerhin bist du scharf auf deren Eier und ausserdem würden dir
+                <p>Das verrückte Hühnchen stachelt Pepes Hühner gegen Ihn auf. Veruche das verrückte Hühnchen mit deinen
+                    Salsa Flaschen zu erledigen, bevor du von der
+                    Hühnerarmada überrannt wirst. Du solltest dabei versuchen deine eigenen Hühner zu verschonen, denn
+                    immmerhin bist du scharf auf deren Eier und ausserdem würden dir
                     dann schon bald die Salsa Flaschen ausgehen.
                 </p>
                 <button class="button" onclick="gamestart()">Spiel starten</button>
@@ -67,7 +75,8 @@
             <img src="./img/You won, you lost/You win B.png" alt="Gewonnen" class="win-image">
             <div id="winner-info" class="winner-info">
                 <h1 class="h2">Herzlichen Glückwunsch</h1>
-                <p class="p">Derzeit baue ich noch an Erweiterungen. Bei Interesse bin ich offen für Vorschläge, einfach an meine Email senden <a href="mailto:akvis2022@gmail.com">EMAIL</a></p>
+                <p class="p">Derzeit baue ich noch an Erweiterungen. Bei Interesse bin ich offen für Vorschläge, einfach
+                    an meine Email senden <a href="mailto:akvis2022@gmail.com">EMAIL</a></p>
                 <button class="button" onclick="newstartGame()">Neu starten</button>
             </div>
         </div>

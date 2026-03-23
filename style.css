@@ -49,17 +49,22 @@ canvas {
     z-index: 1;
 }
 
-#mute-button {
+.icon-bar {
+    display: flex;
+    gap: 8px;
     position: absolute;
+    top: 2%;
+    right: 2%;
 }
 
-#startscreen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+.icon {
+    width: 32px;
+    max-height: 32px;
+    cursor: pointer;
 }
 
-#mute-button {
+/* #mute-button {
+    position: absolute;
     top: 2%;
     right: 2%;
     width: 5%;
@@ -83,7 +88,7 @@ canvas {
     width: 5%;
     max-width: 40px;
     cursor: pointer;
-}
+} */
 
 .help-menu {
     display: none;
