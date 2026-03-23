@@ -160,25 +160,25 @@ class World {
     }
 
     /**
-     * Logik, wenn eine Flasche einen Gegner trifft.
-     * @param {number} e - Index des Gegners
-     * @param {MovableObject} enemy - Getroffener Gegner
-     * @param {number} b - Index der Flasche
-     * @param {ThrowableObject} bottle - Getroffene Flasche
-     */
+ * Logik, wenn eine Flasche einen Gegner trifft.
+ * @param {number} e
+ * @param {MovableObject} enemy
+ * @param {number} b
+ * @param {ThrowableObject} bottle
+ */
     bottleLogic(e, enemy, b, bottle) {
-        enemy.hit();
+        enemy.hit(); // ✅ Sound passiert NUR hier
+
         bottle.speedY = 10;
         bottle.speed = 0;
 
-        // Belohnung und Entfernen je nach Gegnertyp
         if (enemy instanceof Chicken) {
             this.chickenDeath(e, enemy);
         } else if (enemy instanceof Endboss) {
-            enemy.hitSound.play();
             this.endbossDeath(e, enemy);
         }
-        this.throwableObjects.splice(b, 1); // Flasche aus der Welt entfernen
+
+        this.throwableObjects.splice(b, 1);
     }
 
     /**

@@ -32,6 +32,8 @@ class Chicken extends Character {
         right: 0
     };
 
+    hitSound = new Audio("./audio/endboss/endbossApproach.wav")
+
     /**
      * Erstellt ein neues Chicken-Enemy.
      * Setzt Position, Größe, zufällige Geschwindigkeit
@@ -46,11 +48,23 @@ class Chicken extends Character {
         /** Zufällige Startposition im Level */
         this.x = 1800 + Math.random() * 500;
 
+
+
         /** Zufällige Geschwindigkeit zwischen 0.15 und 0.4 */
         this.speed = 0.15 + Math.random() * 0.25;
         this.loadImages(this.IMAGES_WALKING);
         this.animate();
     };
+
+    hit() {
+        super.hit();
+
+        if (this.energy <= 0) {
+            /** @type {HTMLAudioElement} Sound, der abgespielt wird, wenn das Chicken getroffen wird */
+            this.hitSound.volume = 0.5;
+            this.hitSound.play();
+        }
+    }
 
     /**
      * Startet Bewegung und Animation des Huhns.
@@ -58,7 +72,7 @@ class Chicken extends Character {
      * und spielt eine Laufanimation.
      */
     animate() {
-        
+
         // Bewegung des Gegners
         this.moveInterval = setInterval(() => {
             this.moveLeft();
@@ -71,5 +85,5 @@ class Chicken extends Character {
         if (this.world && this.world.intervals) {
             this.world.intervals.push(this.moveInterval, this.animInterval);
         }
-    }; 
+    };
 }
