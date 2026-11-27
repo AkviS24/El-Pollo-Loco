@@ -1,0 +1,261 @@
+/* Spielbereich: Canvas, HUD, Overlays und Touch-Steuerung */
+
+/* ==========================================================================
+   Spielbereich
+   ========================================================================== */
+
+.game-container {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: 640px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    container-type: size;
+}
+
+.game-stage {
+    position: relative;
+    width: min(100cqw, 150cqh);
+    aspect-ratio: 3 / 2;
+    container-type: inline-size;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    background: #000;
+    box-shadow: var(--shadow-l), 0 0 0 3px rgba(255, 209, 102, 0.35);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.game-container:fullscreen {
+    max-height: none;
+    background: #000;
+}
+
+.game-container:fullscreen .game-stage {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hud-buttons {
+    position: absolute;
+    top: 2cqw;
+    right: 2cqw;
+    z-index: 20;
+    display: flex;
+    gap: 1.2cqw;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(11px, 2.3cqw, 18px);
+}
+
+/* ---------- Startbildschirm ---------- */
+
+.start-screen {
+    justify-content: flex-end;
+    gap: 0.9em;
+    padding-bottom: 5cqw;
+    background:
+        linear-gradient(180deg, transparent 40%, rgba(26, 14, 8, 0.55) 70%, rgba(26, 14, 8, 0.92) 100%),
+        url("../img/9_intro_outro_screens/start/startscreen_1.png") center top / cover no-repeat;
+}
+
+.start-tagline {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.7em;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- Anleitung / Pause ---------- */
+
+.help-screen {
+    z-index: 30;
+    padding: 4cqw;
+    background: rgba(15, 8, 4, 0.72);
+    backdrop-filter: blur(4px);
+}
+
+.help-card {
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--color-surface-raised), var(--color-surface));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-l);
+    animation: pop-in 0.25s ease-out;
+}
+
+.help-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    padding: 0.9em 1.2em 0.5em;
+}
+
+.help-header h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2em;
+    color: var(--color-primary-light);
+}
+
+.badge {
+    padding: 0.3em 0.8em;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--color-accent);
+    border-radius: 999px;
+}
+
+.icon-button-close {
+    margin-left: auto;
+}
+
+.help-body {
+    overflow-y: auto;
+    padding: 0 1.2em 1em;
+    line-height: 1.45;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary-dark) transparent;
+}
+
+.help-story {
+    margin: 0;
+    color: var(--color-text-muted);
+}
+
+.help-body h3 {
+    margin: 1em 0 0.45em;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.4em;
+    color: var(--color-primary);
+}
+
+.key-list,
+.tip-list {
+    display: grid;
+    gap: 0.45em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.key-list li {
+    display: grid;
+    grid-template-columns: minmax(13em, auto) 1fr;
+    align-items: center;
+    gap: 1em;
+    padding: 0.4em 0.7em;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-s);
+}
+
+.keys {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.key-or {
+    margin: 0 0.4em 0 0.2em;
+    font-size: 0.85em;
+    color: var(--color-text-muted);
+}
+
+.touch-hint {
+    display: none;
+    margin: 0.6em 0 0;
+    color: var(--color-text-muted);
+}
+
+.tip-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+}
+
+.tip-list img {
+    width: 2.2em;
+    height: 2.2em;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+.help-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8em;
+    padding: 0.8em 1.2em;
+    border-top: 1px solid var(--color-border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.legal-links {
+    display: flex;
+    gap: 1.2em;
+}
+
+.legal-links a {
+    color: var(--color-text-muted);
+    font-size: 0.95em;
+    transition: color 0.2s;
+}
+
+.legal-links a:hover {
+    color: var(--color-primary-light);
+}
+
+/* ---------- Endbildschirm ---------- */
+
+.end-screen {
+    z-index: 15;
+    gap: 1em;
+    padding: 4cqw;
+    background: radial-gradient(circle at center, rgba(58, 33, 19, 0.88), rgba(15, 8, 4, 0.96));
+    animation: fade-in 0.4s ease;
+}
+
+.end-image {
+    max-width: 70%;
+    max-height: 55%;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+    animation: pop-in 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.end-text {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--color-text);
+}

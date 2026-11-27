@@ -1,337 +1,323 @@
+/* ==========================================================================
+   Schrift & Design-Tokens
+   ========================================================================== */
+
 @font-face {
-    font-family: 'Gravitas One';
-    src: url('/fonts/GravitasOne-Regular.ttf') format('truetype');
+    font-family: "Boogaloo";
+    src: url("./fonts/Boogaloo-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
-    font-display: swap; /* Sorgt für besseres Laden */
+    font-display: swap;
+}
+
+:root {
+    --color-bg: #1a0e08;
+    --color-surface: #2a170d;
+    --color-surface-raised: #3a2113;
+    --color-border: rgba(255, 214, 153, 0.18);
+    --color-text: #fff4e2;
+    --color-text-muted: #e3cdb0;
+    --color-primary-light: #ffd166;
+    --color-primary: #ffb703;
+    --color-primary-dark: #f77f00;
+    --color-primary-shadow: #a14d00;
+    --color-on-primary: #3a1a00;
+    --color-accent: #e63946;
+
+    --radius-s: 8px;
+    --radius-m: 16px;
+    --radius-l: 22px;
+    --shadow-l: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+    --font-display: "Boogaloo", "Trebuchet MS", sans-serif;
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ==========================================================================
+   Grundlayout der Seite
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
 }
 
 body {
     margin: 0;
+    min-height: 100%;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    background-image:
+        radial-gradient(ellipse at top, rgba(255, 140, 40, 0.2), transparent 60%),
+        linear-gradient(180deg, rgba(26, 14, 8, 0.55) 0%, rgba(26, 14, 8, 0.94) 75%),
+        url("./img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+}
+
+.d-none {
+    display: none !important;
+}
+
+button {
+    cursor: pointer;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-primary-light);
+    outline-offset: 3px;
+}
+
+.page {
+    height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url('./img/background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    overflow: hidden;
-    font-family: 'Gravitas One', cursive;
-}
-
-.hidden {
-    display: none;
-}
-
-.game-container {
-    position: relative;
-    width: 100%;
-    max-width: 720px;
-    aspect-ratio: 3 / 2;
-}
-
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-#startscreen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.icon-bar {
-    display: flex;
-    gap: 8px;
-    position: absolute;
-    top: 2%;
-    right: 2%;
-}
-
-.icon {
-    width: 32px;
-    max-height: 32px;
-    cursor: pointer;
-}
-
-/* #mute-button {
-    position: absolute;
-    top: 2%;
-    right: 2%;
-    width: 5%;
-    max-width: 40px;
-    cursor: pointer;
-}
-
-#help-button {
-    position: absolute;
-    top: 2%;
-    right: 7%;
-    width: 5%;
-    max-width: 40px;
-    cursor: pointer;
-}
-
-#fullscreen-button {
-    position: absolute;
-    top: 4%;
-    right: 12%;
-    width: 5%;
-    max-width: 40px;
-    cursor: pointer;
-} */
-
-.help-menu {
-    display: none;
-}
-
-.help-menu-visible {
+    justify-content: center;
+    gap: 16px;
     padding: 16px;
-    background-color: rgb(170, 116, 7);
-    border: solid 1px rgb(44, 19, 2);
-    position: absolute;
-    width: 100%;
-    height: 480px;
-    overflow-y: scroll;
-    z-index: 2;
 }
 
-.death-screen {
-    display: none;
+.page-header,
+.controls-legend,
+.page-footer {
+    flex-shrink: 0;
 }
 
-.death-screen-visible {
-    background-color: rgb(170, 116, 7);
-    border: solid 1px rgb(44, 19, 2);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.game-over-image {
-    width: 100%;
-    max-width: 720px;
-    height: 100%;
-    object-fit: contain;
-    object-position: center; 
-}
-
-#restart-button {
-    width: 100px;
-    position: absolute;
-    bottom: 10px;
-    left: calc(50% - 50px);
-}
-
-.start-screen {
-    background-color: rgb(170, 116, 7);
-    border: solid 1px rgb(44, 19, 2);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.start-screen-non-visible {
-    display: none;
-}
-
-.win-screen {
-    display: none;
-}
-
-.win-screen-visible {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    object-fit: cover;
-    object-position: center;
-}
-
-.win-image {
-    position: relative;
-    width: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.winner-info {
-    display: none;
-}
-
-.winner-info-visible {
-    background-color: rgb(170, 116, 7);
-    border: solid 1px rgb(44, 19, 2);
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
-.mobile-controls {
-    display: none;
-}
-
-.mobile-controls-visible {
-    position: absolute;
-    width: 100%;
-    height: 72px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.move-buttons {
-    background-color: rgb(44, 19, 2);
-    height: 64px;
-    width: 100px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.attack-buttons {
-    background-color: rgb(44, 19, 2);
-    height: 64px;
-    width: 140px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    gap: 8px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-right: 20px;
-}
-
-.mobile-buttons {
-    width: 48px;
-    height: auto;
-}
-
-.button {
-    background-color:rgb(244, 75, 29);
-}
-
-.p {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px;
-}
-
-.h2 {
-    color: white;
-    font-family: 'Gravitas One', sans-serif;
-}
-
-/* Impressum.html Styles */
-.text-background {
-    position: relative;
-    width: 60%;
-    height: 80%;
-    background-color: rgba(192, 114, 6, 0.7);
-    overflow-y: scroll;
-}
-
-.x-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 24px;
+.page-header {
     text-align: center;
-    background-color: rgb(204, 204, 204);
-    padding: 4px;
-    cursor: pointer;
+}
+
+.page-title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: 0.03em;
+    color: var(--color-primary-light);
+    text-shadow: 0 3px 0 var(--color-primary-shadow), 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+.page-subtitle {
+    margin: 8px 0 0;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+}
+
+.controls-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 22px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.legend-item kbd:last-of-type {
+    margin-right: 6px;
+}
+
+.page-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 22px;
+    font-size: 0.9rem;
+    color: rgba(255, 244, 226, 0.55);
+}
+
+.page-footer a {
+    color: var(--color-text-muted);
     text-decoration: none;
+    transition: color 0.2s;
 }
 
-@media (max-width: 900px) and (orientation: landscape) {
+.page-footer a:hover {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+}
 
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
+kbd {
+    display: inline-block;
+    min-width: 1.9em;
+    padding: 0.15em 0.5em;
+    margin-right: 0.25em;
+    font-family: var(--font-body);
+    font-size: 0.85em;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--color-on-primary);
+    background: var(--color-text);
+    border-radius: 6px;
+    box-shadow: inset 0 -3px 0 #c9a77c, 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8em;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45em;
+    padding: 0.6em 1.5em;
+    font-family: var(--font-display);
+    font-size: 1.4em;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+.btn img {
+    width: 1em;
+    height: 1em;
+}
+
+.btn-small {
+    font-size: 1.2em;
+    padding: 0.55em 1.2em;
+}
+
+.btn-primary {
+    color: var(--color-on-primary);
+    background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-primary) 55%, var(--color-primary-dark) 100%);
+    box-shadow: 0 4px 0 var(--color-primary-shadow), 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 6px 0 var(--color-primary-shadow), 0 14px 24px rgba(0, 0, 0, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--color-primary-shadow), 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+}
+
+.icon-button {
+    width: clamp(34px, 6cqw, 46px);
+    height: clamp(34px, 6cqw, 46px);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    background: rgba(26, 14, 8, 0.55);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.icon-button img {
+    width: 58%;
+    height: 58%;
+    pointer-events: none;
+}
+
+.icon-button:hover {
+    background: rgba(26, 14, 8, 0.85);
+    border-color: var(--color-primary-light);
+    transform: translateY(-1px);
+}
+
+.icon-button:active {
+    transform: scale(0.94);
+}
+
+.icon-button.is-active {
+    background: rgba(230, 57, 70, 0.8);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ==========================================================================
+   Animationen
+   ========================================================================== */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
     }
 
-    h1 {
-        display: none;
-    }
-
-    .game-container {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        max-height: 480px;
-    }
-
-    canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-    }
-
-    #startscreen {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-    }
-
-    .help-menu-visible {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 350px;
-        overflow-y: scroll;
-        z-index: 1; 
-    }
-
-    #mute-button {
-        position: absolute;
-        z-index: 2;
+    to {
+        opacity: 1;
     }
 }
 
-@media (orientation: portrait) and (max-width: 900px) {
-
-    body::before {
-        content: "🔄 Bitte drehe dein Gerät ins Querformat";
-        position: fixed;
-        inset: 0;
-        background: black;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        text-align: center;
-        z-index: 9999;
+@keyframes pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
     }
 
-    .game-container {
-        display: none;
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate-device {
+    0%,
+    20% {
+        transform: rotate(0deg);
+    }
+
+    60%,
+    100% {
+        transform: rotate(-90deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }

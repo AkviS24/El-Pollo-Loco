@@ -28,10 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>Level<span class="signature">(enemies, clouds, backgroundObjects)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Level<span class="signature">(enemies, clouds, backgroundObjects, coins, bottles, levelEndX)</span><span class="type-signature"></span></h2>
         
             <div class="class-description"><p>Repräsentiert ein Level im Spiel.
-Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level endet.</p></div>
+Enthält Gegner, Wolken, Hintergrund, Sammelobjekte und die X-Position, an der das Level endet.</p></div>
         
     
 </header>
@@ -46,7 +46,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
 
     
-    <h4 class="name" id="Level"><span class="type-signature"></span>new Level<span class="signature">(enemies, clouds, backgroundObjects)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Level"><span class="type-signature"></span>new Level<span class="signature">(enemies, clouds, backgroundObjects, coins, bottles, levelEndX)</span><span class="type-signature"></span></h4>
     
 
     
@@ -96,7 +96,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="Enemy.html">Enemy</a>></span>
 
 
             
@@ -106,7 +106,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
             
 
-            <td class="description last"><p>Array der Gegnerobjekte im Level.</p></td>
+            <td class="description last"><p>Gegner im Level</p></td>
         </tr>
 
     
@@ -119,7 +119,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="Cloud.html">Cloud</a>></span>
 
 
             
@@ -129,7 +129,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
             
 
-            <td class="description last"><p>Array der Wolkenobjekte im Level.</p></td>
+            <td class="description last"><p>Wolken im Level</p></td>
         </tr>
 
     
@@ -142,7 +142,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="BackgroundObjects.html">BackgroundObjects</a>></span>
 
 
             
@@ -152,7 +152,76 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
             
 
-            <td class="description last"><p>Array der Hintergrundobjekte im Level.</p></td>
+            <td class="description last"><p>Hintergrundebenen</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>coins</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="Coin.html">Coin</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Einsammelbare Münzen</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bottles</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;<a href="SalsaBottle.html">SalsaBottle</a>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Einsammelbare Flaschen</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>levelEndX</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>X-Position, an der das Level endet</p></td>
         </tr>
 
     
@@ -193,7 +262,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_level.class.js.html">models/level.class.js</a>, <a href="models_level.class.js.html#line5">line 5</a>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -243,7 +312,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
         
             
-<h4 class="name" id="backgroundObjects"><span class="type-signature"></span>backgroundObjects<span class="type-signature"> :Array.&lt;Object></span></h4>
+<h4 class="name" id="backgroundObjects"><span class="type-signature"></span>backgroundObjects<span class="type-signature"> :Array.&lt;<a href="BackgroundObjects.html">BackgroundObjects</a>></span></h4>
 
 
 
@@ -258,7 +327,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     <ul>
         <li>
             
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="BackgroundObjects.html">BackgroundObjects</a>></span>
 
 
         </li>
@@ -297,7 +366,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_level.class.js.html">models/level.class.js</a>, <a href="models_level.class.js.html#line14">line 14</a>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -315,7 +384,79 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
         
             
-<h4 class="name" id="clouds"><span class="type-signature"></span>clouds<span class="type-signature"> :Array.&lt;Object></span></h4>
+<h4 class="name" id="bottles"><span class="type-signature"></span>bottles<span class="type-signature"> :Array.&lt;<a href="SalsaBottle.html">SalsaBottle</a>></span></h4>
+
+
+
+
+<div class="description">
+    <p>Flaschen, die eingesammelt werden können</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="SalsaBottle.html">SalsaBottle</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="clouds"><span class="type-signature"></span>clouds<span class="type-signature"> :Array.&lt;<a href="Cloud.html">Cloud</a>></span></h4>
 
 
 
@@ -330,7 +471,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     <ul>
         <li>
             
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="Cloud.html">Cloud</a>></span>
 
 
         </li>
@@ -369,7 +510,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_level.class.js.html">models/level.class.js</a>, <a href="models_level.class.js.html#line11">line 11</a>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -387,13 +528,13 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
         
             
-<h4 class="name" id="enemies"><span class="type-signature"></span>enemies<span class="type-signature"> :Array.&lt;Object></span></h4>
+<h4 class="name" id="coins"><span class="type-signature"></span>coins<span class="type-signature"> :Array.&lt;<a href="Coin.html">Coin</a>></span></h4>
 
 
 
 
 <div class="description">
-    <p>Liste der Gegner im Level</p>
+    <p>Münzen, die eingesammelt werden können</p>
 </div>
 
 
@@ -402,7 +543,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     <ul>
         <li>
             
-<span class="param-type">Array.&lt;Object></span>
+<span class="param-type">Array.&lt;<a href="Coin.html">Coin</a>></span>
 
 
         </li>
@@ -441,7 +582,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_level.class.js.html">models/level.class.js</a>, <a href="models_level.class.js.html#line8">line 8</a>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -459,13 +600,85 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 
         
             
-<h4 class="name" id="level_end_x"><span class="type-signature"></span>level_end_x<span class="type-signature"> :number</span></h4>
+<h4 class="name" id="enemies"><span class="type-signature"></span>enemies<span class="type-signature"> :Array.&lt;<a href="Enemy.html">Enemy</a>></span></h4>
 
 
 
 
 <div class="description">
-    <p>X-Position, an der das Level endet (hier nach 2 Bildschirmen)</p>
+    <p>Liste der Gegner im Level (inkl. Endboss)</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;<a href="Enemy.html">Enemy</a>></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="levelEndX"><span class="type-signature"></span>levelEndX<span class="type-signature"> :number</span></h4>
+
+
+
+
+<div class="description">
+    <p>X-Position, bis zu der Pepe laufen kann</p>
 </div>
 
 
@@ -513,7 +726,7 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_level.class.js.html">models/level.class.js</a>, <a href="models_level.class.js.html#line17">line 17</a>
+        <a href="js_classes_level.class.js.html">js/classes/level.class.js</a>, <a href="js_classes_level.class.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -547,13 +760,13 @@ Enthält Gegner, Wolken, Hintergrundobjekte und die X-Position, an der das Level
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="ItemBar.html">ItemBar</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToGame">backToGame</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#deathScreen">deathScreen</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#gameContainer">gameContainer</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#masterVolume">masterVolume</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#newstartGame">newstartGame</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#soundPushing">soundPushing</a></li><li><a href="global.html#sounds">sounds</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winnerInfo">winnerInfo</a></li><li><a href="global.html#world">world</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Enemy.html">Enemy</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SalsaBottle.html">SalsaBottle</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="SoundManager.html">SoundManager</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToMenu">backToMenu</a></li><li><a href="global.html#bindControlButton">bindControlButton</a></li><li><a href="global.html#bindMobileControls">bindMobileControls</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearCanvas">clearCanvas</a></li><li><a href="global.html#closeHelp">closeHelp</a></li><li><a href="global.html#confirmHelp">confirmHelp</a></li><li><a href="global.html#createBackgroundObjects">createBackgroundObjects</a></li><li><a href="global.html#createBackgroundSegment">createBackgroundSegment</a></li><li><a href="global.html#createBottles">createBottles</a></li><li><a href="global.html#createClouds">createClouds</a></li><li><a href="global.html#createCoins">createCoins</a></li><li><a href="global.html#createEnemies">createEnemies</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#endGameTimeout">endGameTimeout</a></li><li><a href="global.html#endScreenContent">endScreenContent</a></li><li><a href="global.html#gamePaused">gamePaused</a></li><li><a href="global.html#gameRunning">gameRunning</a></li><li><a href="global.html#handleControlButton">handleControlButton</a></li><li><a href="global.html#handleKey">handleKey</a></li><li><a href="global.html#handleOrientationChange">handleOrientationChange</a></li><li><a href="global.html#handleOutsideHelpClick">handleOutsideHelpClick</a></li><li><a href="global.html#handleVisibilityChange">handleVisibilityChange</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initUi">initUi</a></li><li><a href="global.html#intervalIds">intervalIds</a></li><li><a href="global.html#isHelpOpen">isHelpOpen</a></li><li><a href="global.html#keyBindings">keyBindings</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#level1EndX">level1EndX</a></li><li><a href="global.html#openHelp">openHelp</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#pausedByHelp">pausedByHelp</a></li><li><a href="global.html#portraitMobileQuery">portraitMobileQuery</a></li><li><a href="global.html#quitToMenu">quitToMenu</a></li><li><a href="global.html#renderEndScreen">renderEndScreen</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#scheduleGameEnd">scheduleGameEnd</a></li><li><a href="global.html#segmentWidth">segmentWidth</a></li><li><a href="global.html#setPlayingState">setPlayingState</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#soundManager">soundManager</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleHelpWithEscape">toggleHelpWithEscape</a></li><li><a href="global.html#toggleMute">toggleMute</a></li><li><a href="global.html#touchBindings">touchBindings</a></li><li><a href="global.html#updateFullscreenButton">updateFullscreenButton</a></li><li><a href="global.html#updateHelpActions">updateHelpActions</a></li><li><a href="global.html#updateMuteButton">updateMuteButton</a></li><li><a href="global.html#world">world</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Mar 06 2026 17:45:00 GMT+0100 (Mitteleuropäische Normalzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Oct 14 2026 12:02:32 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>

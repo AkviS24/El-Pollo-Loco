@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: levels/level1.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: levels/level1.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Breite eines Hintergrund-Segments
+ * @type {number}
+ */
+const segmentWidth = 719;
+
+/**
+ * X-Position, bis zu der Pepe laufen kann
+ * @type {number}
+ */
+const level1EndX = segmentWidth * 4;
+
+/**
+ * Erstellt das erste Level des Spiels.
+ * Wird bei jedem (Neu-)Start aufgerufen, damit alle Objekte frisch erzeugt werden.
+ *
+ * @returns {Level} Neues Level-Objekt
+ */
+function createLevel1() {
+    return new Level(
+        createEnemies(),
+        createClouds(),
+        createBackgroundObjects(),
+        createCoins(),
+        createBottles(),
+        level1EndX
+    );
+}
+
+/**
+ * Erstellt abwechselnd normale Hühner und Küken sowie den Endboss am Levelende.
+ *
+ * @returns {Enemy[]} Alle Gegner des Levels
+ */
+function createEnemies() {
+    let enemies = [];
+    for (let i = 0; i &lt; 10; i++) {
+        let x = 700 + i * 220 + Math.random() * 120;
+        enemies.push(i % 2 === 0 ? new Chicken(x) : new SmallChicken(x));
+    }
+    enemies.push(new Endboss(level1EndX + 180));
+    return enemies;
+}
+
+/**
+ * Erstellt Münzen in drei Bögen (zum Teil nur mit Sprung erreichbar) und einige Einzelmünzen.
+ *
+ * @returns {Coin[]} Alle Münzen des Levels
+ */
+function createCoins() {
+    let coins = [];
+    [450, 1150, 1850].forEach((startX) => {
+        [270, 205, 170, 205, 270].forEach((y, i) => coins.push(new Coin(startX + i * 70, y)));
+    });
+    [2350, 2500, 2650].forEach((x) => coins.push(new Coin(x, 220)));
+    return coins;
+}
+
+/**
+ * Erstellt die am Boden liegenden Salsa-Flaschen.
+ *
+ * @returns {SalsaBottle[]} Alle Flaschen des Levels
+ */
+function createBottles() {
+    return [330, 620, 900, 1300, 1550, 1750, 2000, 2200, 2420, 2700].map((x) => new SalsaBottle(x));
+}
+
+/**
+ * Erstellt die Wolken, die über das ganze Level verteilt sind.
+ *
+ * @returns {Cloud[]} Alle Wolken des Levels
+ */
+function createClouds() {
+    let clouds = [];
+    for (let i = 0; i &lt; 6; i++) {
+        clouds.push(new Cloud(i * 720, `./img/5_background/layers/4_clouds/${i % 2 + 1}.png`));
+    }
+    return clouds;
+}
+
+/**
+ * Erstellt die Hintergrund-Segmente vom linken bis zum rechten Levelrand.
+ *
+ * @returns {BackgroundObjects[]} Alle Hintergrundebenen
+ */
+function createBackgroundObjects() {
+    let objects = [];
+    for (let i = -1; i &lt;= 4; i++) {
+        let variant = Math.abs(i) % 2 + 1;
+        objects.push(...createBackgroundSegment(i * segmentWidth, variant));
+    }
+    return objects;
+}
+
+/**
+ * Erstellt ein Hintergrund-Segment aus vier Ebenen (Himmel, hinten, Mitte, vorne).
+ *
+ * @param {number} x - X-Position des Segments
+ * @param {number} variant - Bildvariante (1 oder 2), damit die Segmente nahtlos aneinanderpassen
+ * @returns {BackgroundObjects[]} Die vier Ebenen des Segments
+ */
+function createBackgroundSegment(x, variant) {
+    return [
+        new BackgroundObjects("./img/5_background/layers/air.png", x),
+        new BackgroundObjects(`./img/5_background/layers/3_third_layer/${variant}.png`, x),
+        new BackgroundObjects(`./img/5_background/layers/2_second_layer/${variant}.png`, x),
+        new BackgroundObjects(`./img/5_background/layers/1_first_layer/${variant}.png`, x)
+    ];
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Enemy.html">Enemy</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SalsaBottle.html">SalsaBottle</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="SoundManager.html">SoundManager</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToMenu">backToMenu</a></li><li><a href="global.html#bindControlButton">bindControlButton</a></li><li><a href="global.html#bindMobileControls">bindMobileControls</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearCanvas">clearCanvas</a></li><li><a href="global.html#closeHelp">closeHelp</a></li><li><a href="global.html#confirmHelp">confirmHelp</a></li><li><a href="global.html#createBackgroundObjects">createBackgroundObjects</a></li><li><a href="global.html#createBackgroundSegment">createBackgroundSegment</a></li><li><a href="global.html#createBottles">createBottles</a></li><li><a href="global.html#createClouds">createClouds</a></li><li><a href="global.html#createCoins">createCoins</a></li><li><a href="global.html#createEnemies">createEnemies</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#endGameTimeout">endGameTimeout</a></li><li><a href="global.html#endScreenContent">endScreenContent</a></li><li><a href="global.html#gamePaused">gamePaused</a></li><li><a href="global.html#gameRunning">gameRunning</a></li><li><a href="global.html#handleControlButton">handleControlButton</a></li><li><a href="global.html#handleKey">handleKey</a></li><li><a href="global.html#handleOrientationChange">handleOrientationChange</a></li><li><a href="global.html#handleOutsideHelpClick">handleOutsideHelpClick</a></li><li><a href="global.html#handleVisibilityChange">handleVisibilityChange</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initUi">initUi</a></li><li><a href="global.html#intervalIds">intervalIds</a></li><li><a href="global.html#isHelpOpen">isHelpOpen</a></li><li><a href="global.html#keyBindings">keyBindings</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#level1EndX">level1EndX</a></li><li><a href="global.html#openHelp">openHelp</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#pausedByHelp">pausedByHelp</a></li><li><a href="global.html#portraitMobileQuery">portraitMobileQuery</a></li><li><a href="global.html#quitToMenu">quitToMenu</a></li><li><a href="global.html#renderEndScreen">renderEndScreen</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#scheduleGameEnd">scheduleGameEnd</a></li><li><a href="global.html#segmentWidth">segmentWidth</a></li><li><a href="global.html#setPlayingState">setPlayingState</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#soundManager">soundManager</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleHelpWithEscape">toggleHelpWithEscape</a></li><li><a href="global.html#toggleMute">toggleMute</a></li><li><a href="global.html#touchBindings">touchBindings</a></li><li><a href="global.html#updateFullscreenButton">updateFullscreenButton</a></li><li><a href="global.html#updateHelpActions">updateHelpActions</a></li><li><a href="global.html#updateMuteButton">updateMuteButton</a></li><li><a href="global.html#world">world</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Oct 14 2026 12:02:32 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

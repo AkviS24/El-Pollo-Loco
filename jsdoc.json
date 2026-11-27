@@ -1,6 +1,9 @@
 {
   "source": {
-    "include": ["./js"],
+    "include": [
+      "./js",
+      "./levels"
+    ],
     "includePattern": ".+\\.js$",
     "exclude": [
       "node_modules",
