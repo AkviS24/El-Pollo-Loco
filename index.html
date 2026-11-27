@@ -1,97 +1,222 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="de" translate="no">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Pollo Loco by AkviS</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="./img/2_character_pepe/1_idle/idle/I-1.png">
-    <script src="./js/models/drawable-object.class.js" defer></script>
-    <script src="./js/models/movable-object.class.js" defer></script>
-    <script src="./js/models/status-bar.class.js" defer></script>
-    <script src="./js/models/item-bar.class.js" defer></script>
-    <script src="./js/models/character.class.js" defer></script>
-    <script src="./js/models/chicken.class.js" defer></script>
-    <script src="./js/models/cloud.class.js" defer></script>
-    <script src="./js/models/coin-animation.class.js" defer></script>
-    <script src="./js/models/world.class.js" defer></script>
-    <script src="./js/models/background-objects.class.js" defer></script>
-    <script src="./js/models/keyboard.class.js" defer></script>
-    <script src="./js/models/level.class.js" defer></script>
-    <script src="./js/models/throwable-object.class.js" defer></script>
-    <script src="./js/models/endboss.class.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="El Pollo Loco – ein Jump'n'Run-Browserspiel in JavaScript: Hilf Pepe, die verrückte Riesenhenne zu besiegen.">
+    <meta name="theme-color" content="#1a0e08">
+    <title>El Pollo Loco | Jump'n'Run von AkviS</title>
+    <link rel="icon" type="image/png" href="./img/7_statusbars/3_icons/icon_health_endboss.png">
+    <link rel="preload" href="./fonts/Boogaloo-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/mobile.css">
+    <script src="./js/classes/drawable-object.class.js" defer></script>
+    <script src="./js/classes/movable-object.class.js" defer></script>
+    <script src="./js/classes/status-bar.class.js" defer></script>
+    <script src="./js/classes/background-objects.class.js" defer></script>
+    <script src="./js/classes/cloud.class.js" defer></script>
+    <script src="./js/classes/character.class.js" defer></script>
+    <script src="./js/classes/enemy.class.js" defer></script>
+    <script src="./js/classes/chicken.class.js" defer></script>
+    <script src="./js/classes/small-chicken.class.js" defer></script>
+    <script src="./js/classes/endboss.class.js" defer></script>
+    <script src="./js/classes/coin.class.js" defer></script>
+    <script src="./js/classes/salsa-bottle.class.js" defer></script>
+    <script src="./js/classes/coin-animation.class.js" defer></script>
+    <script src="./js/classes/throwable-object.class.js" defer></script>
+    <script src="./js/classes/keyboard.class.js" defer></script>
+    <script src="./js/classes/level.class.js" defer></script>
+    <script src="./js/classes/sound-manager.class.js" defer></script>
+    <script src="./js/classes/world.class.js" defer></script>
     <script src="./levels/level1.js" defer></script>
     <script src="./js/game.js" defer></script>
     <script src="./js/script.js" defer></script>
+    <script src="./js/controls.js" defer></script>
 </head>
 
 <body>
+    <div class="page">
+        <header class="page-header">
+            <h1 class="page-title">El Pollo Loco</h1>
+            <p class="page-subtitle">Ein Jump'n'Run-Abenteuer in der mexikanischen Wüste</p>
+        </header>
 
-    <div id="game-container" class="game-container">
-        <canvas width="720" height="480" id="canvas"></canvas>
-        <div class="icon-bar">
-            <img src="./img/icons/fullscreen-icon.png" class="icon" alt="Fullscreen Button" id="fullscreen-button" onclick="fullscreen()">
-            <img src="./img/icons/mute-icon.png" class="icon" alt="Mute Button" id="mute-button" onclick="mute()">
-            <img src="./img/icons/help-icon.png" class="icon" alt="Help Button" id="help-button" onclick="help()">
-        </div>
-        <img src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="Startscreen" id="startscreen">
-        <div id="help-menu" class="help-menu">
-            <button class="x-button" onclick="backToGame()">X</button>
-            <h1>El Pollo Loco by AkviS</h1>
-            <h2 class="h2">Wie du mit Pepe läufst</h2>
-            <p class="p">Mit den Tasten A, oder linke Pfeiltaste, sowie D, oder der rechten Pfeiltaste, kannst du links
-                bzw. rechts laufen </p>
-            <h2 class="h2">Wie du mit Pepe springst, Flaschen wirfst und neue Flaschen erhälst</h2>
-            <p class="p">Mit der Leertaste springst du und mit F werden Flaschen geworfen. Durch drücken von V kannst du
-                neue Flaschen kaufen. Aber Vorsicht jede neue Flasche kostet dich 5 Goldmünzen</p>
-            <h2 class="h2">Wie du das Spiel gewinnst</h2>
-            <p class="p">Ziel des Spiels ist es, den Endboss zu vernichten bevor zu viele Küken schlüpfen und dich
-                überrennen</p>
-            <a href="./impressum.html" class="button">Impressum</a> <a href="./datenschutz.html"
-                class="button">Datenschutz</a>
-        </div>
+        <main id="game-container" class="game-container">
+            <div class="game-stage">
+                <canvas id="canvas" width="720" height="480" aria-label="Spielfeld von El Pollo Loco"></canvas>
 
-        <div id="start-screen" class="start-screen">
-            <img src="./img/2_character_pepe/1_idle/idle/">
-            <div class="start-text">
-                <h1>Willkommen bei Pollo Loco by AkviS</h1>
-                <p>Das verrückte Hühnchen stachelt Pepes Hühner gegen Ihn auf. Veruche das verrückte Hühnchen mit deinen
-                    Salsa Flaschen zu erledigen, bevor du von der
-                    Hühnerarmada überrannt wirst. Du solltest dabei versuchen deine eigenen Hühner zu verschonen, denn
-                    immmerhin bist du scharf auf deren Eier und ausserdem würden dir
-                    dann schon bald die Salsa Flaschen ausgehen.
-                </p>
-                <button class="button" onclick="gamestart()">Spiel starten</button>
+                <div class="hud-buttons">
+                    <button id="mute-button" class="icon-button" type="button" onclick="toggleMute()">
+                        <img id="mute-icon" src="./img/icons/volume-on.svg" alt="">
+                    </button>
+                    <button id="fullscreen-button" class="icon-button" type="button" onclick="toggleFullscreen()">
+                        <img id="fullscreen-icon" src="./img/icons/fullscreen.svg" alt="">
+                    </button>
+                    <button id="help-button" class="icon-button js-open-help" type="button" onclick="openHelp()"
+                        aria-label="Anleitung und Pause" title="Anleitung &amp; Pause">
+                        <img src="./img/icons/help.svg" alt="">
+                    </button>
+                </div>
+
+                <section id="start-screen" class="overlay start-screen" aria-label="Startbildschirm">
+                    <p class="start-tagline">Hilf Pepe, die verrückte Riesenhenne zu besiegen!</p>
+                    <div class="button-row">
+                        <button class="btn btn-primary" type="button" onclick="startGame()">
+                            <img src="./img/icons/play.svg" alt="">Spiel starten
+                        </button>
+                        <button class="btn btn-secondary js-open-help" type="button" onclick="openHelp()">So wird gespielt</button>
+                    </div>
+                </section>
+
+                <section id="help-screen" class="overlay help-screen d-none" role="dialog" aria-modal="true"
+                    aria-labelledby="help-title">
+                    <div class="help-card">
+                        <div class="help-header">
+                            <h2 id="help-title">So wird gespielt</h2>
+                            <span id="help-paused-badge" class="badge d-none">Pausiert</span>
+                            <button class="icon-button icon-button-close" type="button" onclick="closeHelp()"
+                                aria-label="Schließen" title="Schließen">
+                                <img src="./img/icons/close.svg" alt="">
+                            </button>
+                        </div>
+
+                        <div class="help-body">
+                            <p class="help-story">
+                                Die verrückte Riesenhenne hat Pepes Hühner gegen ihn aufgehetzt. Kämpf dich durch die
+                                Wüste, sammle Münzen und Salsa-Flaschen und besiege die Henne am Ende des Weges!
+                            </p>
+
+                            <h3>Steuerung</h3>
+                            <ul class="key-list">
+                                <li>
+                                    <span class="keys"><kbd>←</kbd><kbd>→</kbd><span class="key-or">oder</span><kbd>A</kbd><kbd>D</kbd></span>
+                                    <span>Laufen</span>
+                                </li>
+                                <li>
+                                    <span class="keys"><kbd>Leertaste</kbd><span class="key-or">oder</span><kbd>↑</kbd></span>
+                                    <span>Springen</span>
+                                </li>
+                                <li>
+                                    <span class="keys"><kbd>F</kbd></span>
+                                    <span>Salsa-Flasche werfen</span>
+                                </li>
+                                <li>
+                                    <span class="keys"><kbd>V</kbd></span>
+                                    <span>Flasche kaufen (kostet 5 Münzen)</span>
+                                </li>
+                                <li>
+                                    <span class="keys"><kbd>Esc</kbd></span>
+                                    <span>Pause / Anleitung</span>
+                                </li>
+                            </ul>
+                            <p class="touch-hint">
+                                Auf dem Smartphone steuerst du Pepe mit den Buttons am unteren Rand:
+                                links laufen, rechts kaufen (Münze), werfen (Flasche) und springen.
+                            </p>
+
+                            <h3>Tipps</h3>
+                            <ul class="tip-list">
+                                <li>
+                                    <img src="./img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="">
+                                    <span>Spring von oben auf Hühner und Küken, um sie zu besiegen – jedes besiegte
+                                        Huhn bringt eine Münze.</span>
+                                </li>
+                                <li>
+                                    <img src="./img/6_salsa_bottle/salsa_bottle.png" alt="">
+                                    <span>Salsa-Flaschen liegen am Boden. Die Riesenhenne kannst du nur mit Flaschen
+                                        besiegen.</span>
+                                </li>
+                                <li>
+                                    <img src="./img/8_coin/coin_1.png" alt="">
+                                    <span>Münzen schweben in der Luft – für 5 Münzen bekommst du eine neue
+                                        Flasche.</span>
+                                </li>
+                                <li>
+                                    <img src="./img/7_statusbars/3_icons/icon_health.png" alt="">
+                                    <span>Nach einem Treffer ist Pepe kurz unverwundbar. Und Achtung: Wer zu lange
+                                        herumsteht, schläft ein …</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="help-footer">
+                            <nav class="legal-links" aria-label="Rechtliches">
+                                <a href="./impressum.html">Impressum</a>
+                                <a href="./datenschutz.html">Datenschutz</a>
+                            </nav>
+                            <div class="button-row">
+                                <button id="help-menu-button" class="btn btn-secondary btn-small d-none" type="button"
+                                    onclick="quitToMenu()">
+                                    <img src="./img/icons/home.svg" alt="">Hauptmenü
+                                </button>
+                                <button id="help-close-button" class="btn btn-primary btn-small" type="button"
+                                    onclick="confirmHelp()">
+                                    <img src="./img/icons/play.svg" alt=""><span id="help-close-label">Spiel starten</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="end-screen" class="overlay end-screen d-none" aria-live="polite">
+                    <img id="end-image" class="end-image" src="./img/You won, you lost/Game Over.png" alt="Game Over">
+                    <p id="end-text" class="end-text"></p>
+                    <div class="button-row">
+                        <button class="btn btn-primary" type="button" onclick="restartGame()">
+                            <img src="./img/icons/replay.svg" alt="">Nochmal spielen
+                        </button>
+                        <button class="btn btn-secondary" type="button" onclick="backToMenu()">
+                            <img src="./img/icons/home.svg" alt="">Hauptmenü
+                        </button>
+                    </div>
+                </section>
+
+                <div class="mobile-controls">
+                    <div class="control-group">
+                        <button id="touch-left" class="touch-button" type="button" aria-label="Nach links laufen">
+                            <img src="./img/icons/arrow-left.svg" alt="">
+                        </button>
+                        <button id="touch-right" class="touch-button" type="button" aria-label="Nach rechts laufen">
+                            <img src="./img/icons/arrow-right.svg" alt="">
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <button id="touch-buy" class="touch-button touch-button-small" type="button"
+                            aria-label="Flasche für 5 Münzen kaufen">
+                            <img src="./img/7_statusbars/3_icons/icon_coin.png" alt="">
+                        </button>
+                        <button id="touch-throw" class="touch-button" type="button" aria-label="Flasche werfen">
+                            <img src="./img/6_salsa_bottle/salsa_bottle.png" class="touch-image" alt="">
+                        </button>
+                        <button id="touch-jump" class="touch-button" type="button" aria-label="Springen">
+                            <img src="./img/icons/arrow-up.svg" alt="">
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
+        </main>
 
-        <div id="death-screen" class="death-screen">
-            <img src="./img/You won, you lost/Game Over.png" alt="Game Over" class="game-over-image">
-            <button id="restart-button" class="button" onclick="restartGame()">Neu starten</button>
-        </div>
+        <section class="controls-legend" aria-label="Steuerung">
+            <span class="legend-item"><kbd>←</kbd><kbd>→</kbd>Laufen</span>
+            <span class="legend-item"><kbd>Leertaste</kbd>Springen</span>
+            <span class="legend-item"><kbd>F</kbd>Werfen</span>
+            <span class="legend-item"><kbd>V</kbd>Flasche kaufen</span>
+            <span class="legend-item"><kbd>Esc</kbd>Pause</span>
+        </section>
 
-        <div id="win-screen" class="win-screen">
-            <img src="./img/You won, you lost/You win B.png" alt="Gewonnen" class="win-image">
-            <div id="winner-info" class="winner-info">
-                <h1 class="h2">Herzlichen Glückwunsch</h1>
-                <p class="p">Derzeit baue ich noch an Erweiterungen. Bei Interesse bin ich offen für Vorschläge, einfach
-                    an meine Email senden <a href="mailto:akvis2022@gmail.com">EMAIL</a></p>
-                <button class="button" onclick="newstartGame()">Neu starten</button>
-            </div>
-        </div>
+        <footer class="page-footer">
+            <span>© 2026 AkviS</span>
+            <a href="./impressum.html">Impressum</a>
+            <a href="./datenschutz.html">Datenschutz</a>
+        </footer>
+    </div>
 
-        <div id="mobile-controls" class="mobile-controls">
-            <div class="move-buttons">
-                <button class="mobile-buttons" id="leftBTN">⬅️</button>
-                <button class="mobile-buttons" id="rightBTN">➡️</button>
-            </div>
-            <div class="attack-buttons">
-                <button class="mobile-buttons" id="buyBTN">🪙</button>
-                <button class="mobile-buttons" id="attackBTN">⚔️</button>
-                <button class="mobile-buttons" id="jumpBTN">⏫</button>
-            </div>
-        </div>
+    <div class="rotate-hint">
+        <img src="./img/icons/rotate-device.svg" alt="">
+        <p>Bitte drehe dein Gerät ins Querformat</p>
     </div>
 </body>
 

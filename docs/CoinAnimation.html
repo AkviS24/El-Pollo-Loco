@@ -28,11 +28,10 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>CoinAnimation<span class="signature">(world, x, y)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>CoinAnimation<span class="signature">(x, y)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Animationsobjekt für eingesammelte Coins.
-Wird kurz angezeigt, wenn der Spieler einen Coin einsammelt
-und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></div>
+            <div class="class-description"><p>Kleine Münz-Animation, die aufsteigt, wenn Pepe ein Huhn besiegt
+und dafür eine Münze als Belohnung bekommt.</p></div>
         
     
 </header>
@@ -47,7 +46,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
 
     
-    <h4 class="name" id="CoinAnimation"><span class="type-signature"></span>new CoinAnimation<span class="signature">(world, x, y)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CoinAnimation"><span class="type-signature"></span>new CoinAnimation<span class="signature">(x, y)</span><span class="type-signature"></span></h4>
     
 
     
@@ -55,7 +54,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
 
 
 <div class="description">
-    <p>Erstellt eine neue Coin-Animation.</p>
+    <p>Erstellt eine neue Münz-Animation, die nach einer Sekunde verschwindet.</p>
 </div>
 
 
@@ -87,29 +86,6 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     </thead>
 
     <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>world</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="World.html">World</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Referenz zur aktuellen Spielwelt</p></td>
-        </tr>
-
     
 
         <tr>
@@ -194,7 +170,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line8">line 8</a>
+        <a href="js_classes_coin-animation.class.js.html">js/classes/coin-animation.class.js</a>, <a href="js_classes_coin-animation.class.js.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -261,7 +237,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
 
 
 <div class="description">
-    <p>Bilder für die Coin-Animation</p>
+    <p>Bilder für die Münz-Animation</p>
 </div>
 
 
@@ -309,7 +285,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line14">line 14</a>
+        <a href="js_classes_coin-animation.class.js.html">js/classes/coin-animation.class.js</a>, <a href="js_classes_coin-animation.class.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -386,7 +362,87 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line19">line 19</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line31">line 31</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="currentAnimation"><span class="type-signature"></span>currentAnimation<span class="type-signature"> :Array.&lt;string>|null</span></h4>
+
+
+
+
+<div class="description">
+    <p>Aktuell abgespielte Animation</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;string></span>
+|
+
+<span class="param-type">null</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#currentAnimation">MovableObject#currentAnimation</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -463,7 +519,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line32">line 32</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -540,7 +596,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line22">line 22</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -558,13 +614,13 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
 
         
             
-<h4 class="name" id="gravityInterval"><span class="type-signature"></span>gravityInterval<span class="type-signature"> :number</span></h4>
+<h4 class="name" id="groundY"><span class="type-signature"></span>groundY<span class="type-signature"> :number</span></h4>
 
 
 
 
 <div class="description">
-    <p>Interval-ID der Gravitation</p>
+    <p>Y-Position, auf der das Objekt am Boden steht</p>
 </div>
 
 
@@ -594,7 +650,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-overrides">Overrides:</dt>
     <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="MovableObject.html#gravityInterval">MovableObject#gravityInterval</a>
+        <a href="MovableObject.html#groundY">MovableObject#groundY</a>
     </li></ul></dd>
     
 
@@ -617,7 +673,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line28">line 28</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -694,7 +750,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line42">line 42</a>
+        <a href="js_classes_coin-animation.class.js.html">js/classes/coin-animation.class.js</a>, <a href="js_classes_coin-animation.class.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -719,7 +775,7 @@ und bewegt sich leicht nach oben während die Animation abgespielt wird.</p></di
 
 <div class="description">
     <p>Cache für bereits geladene Bilder.
-Wird verwendet um Animationen effizient darzustellen.</p>
+Wird verwendet, um Animationen effizient darzustellen.</p>
 </div>
 
 
@@ -772,7 +828,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line29">line 29</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -849,7 +905,84 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line15">line 15</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line24">line 24</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="intervals"><span class="type-signature"></span>intervals<span class="type-signature"> :Array.&lt;number></span></h4>
+
+
+
+
+<div class="description">
+    <p>IDs aller Intervalle, die dieses Objekt gestartet hat</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;number></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#intervals">MovableObject#intervals</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -926,7 +1059,85 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line25">line 25</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line49">line 49</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="offset"><span class="type-signature"></span>offset<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>Abstände der Hitbox zum Bildrand.
+Wird verwendet, um präzisere Kollisionen zu berechnen.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#offset">MovableObject#offset</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line75">line 75</a>
     </li></ul></dd>
     
 
@@ -950,7 +1161,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
 
 
 <div class="description">
-    <p>TRUE, wenn das Objekt in die entgegengesetzte Richtung zeigt</p>
+    <p>TRUE, wenn das Objekt in die entgegengesetzte Richtung (nach links) schaut</p>
 </div>
 
 
@@ -1003,7 +1214,84 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line13">line 13</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="removable"><span class="type-signature"></span>removable<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+<div class="description">
+    <p>TRUE, sobald das Objekt aus der Welt entfernt werden soll</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#removable">MovableObject#removable</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -1080,7 +1368,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line10">line 10</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -1104,7 +1392,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
 
 
 <div class="description">
-    <p>Vertikale Geschwindigkeit der Animation</p>
+    <p>Geschwindigkeit in vertikaler Richtung</p>
 </div>
 
 
@@ -1157,7 +1445,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line45">line 45</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -1234,75 +1522,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line39">line 39</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="world"><span class="type-signature"></span>world<span class="type-signature"> :<a href="World.html">World</a></span></h4>
-
-
-
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type"><a href="World.html">World</a></span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line30">line 30</a>
+        <a href="js_classes_coin-animation.class.js.html">js/classes/coin-animation.class.js</a>, <a href="js_classes_coin-animation.class.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -1326,7 +1546,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
 
 
 <div class="description">
-    <p>X-Position der Animation</p>
+    <p>X-Position des Objekts</p>
 </div>
 
 
@@ -1379,7 +1599,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line33">line 33</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -1403,7 +1623,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
 
 
 <div class="description">
-    <p>Y-Position der Animation</p>
+    <p>Y-Position des Objekts</p>
 </div>
 
 
@@ -1456,7 +1676,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line36">line 36</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -1484,6 +1704,171 @@ Wird verwendet um Animationen effizient darzustellen.</p>
     
 
     
+    <h4 class="name" id="addInterval"><span class="type-signature"></span>addInterval<span class="signature">(fn, time)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Startet ein pausierbares Intervall und merkt sich dessen ID.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Funktion, die wiederholt ausgeführt wird</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>time</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Abstand in Millisekunden</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#addInterval">MovableObject#addInterval</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line83">line 83</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="animate"><span class="type-signature"></span>animate<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -1492,9 +1877,7 @@ Wird verwendet um Animationen effizient darzustellen.</p>
 
 
 <div class="description">
-    <p>Startet die Coin-Animation.
-Spielt die Bilder der Animation ab und bewegt
-das Objekt leicht nach oben.</p>
+    <p>Spielt die Animation ab und bewegt die Münze dabei nach oben.</p>
 </div>
 
 
@@ -1538,7 +1921,7 @@ das Objekt leicht nach oben.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_coin-animation.class.js.html">models/coin-animation.class.js</a>, <a href="models_coin-animation.class.js.html#line65">line 65</a>
+        <a href="js_classes_coin-animation.class.js.html">js/classes/coin-animation.class.js</a>, <a href="js_classes_coin-animation.class.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -1583,7 +1966,7 @@ das Objekt leicht nach oben.</p>
 
 <div class="description">
     <p>Wendet Gravitation auf das Objekt an.
-Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben springt.</p>
+Bewegt das Objekt nach unten, solange es in der Luft ist oder nach oben springt.</p>
 </div>
 
 
@@ -1632,7 +2015,7 @@ Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line34">line 34</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -1676,7 +2059,7 @@ Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben 
 
 
 <div class="description">
-    <p>Zeichnet das Objekt auf das Canvas.</p>
+    <p>Zeichnet das Objekt auf das Canvas, sobald sein Bild geladen ist.</p>
 </div>
 
 
@@ -1774,7 +2157,7 @@ Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line39">line 39</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -1810,7 +2193,7 @@ Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben 
     
 
     
-    <h4 class="name" id="drawFrame"><span class="type-signature"></span>drawFrame<span class="signature">(ctx)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="hit"><span class="type-signature"></span>hit<span class="signature">(damage)</span><span class="type-signature"></span></h4>
     
 
     
@@ -1818,8 +2201,7 @@ Bewegt das Objekt nach unten, solange es nicht auf dem Boden ist oder nach oben 
 
 
 <div class="description">
-    <p>Zeichnet einen Debug-Rahmen um das Objekt.
-Wird hauptsächlich für Kollisionsboxen verwendet.</p>
+    <p>Reduziert die Energie des Objekts und merkt sich den Zeitpunkt des Treffers.</p>
 </div>
 
 
@@ -1855,13 +2237,13 @@ Wird hauptsächlich für Kollisionsboxen verwendet.</p>
 
         <tr>
             
-                <td class="name"><code>ctx</code></td>
+                <td class="name"><code>damage</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">CanvasRenderingContext2D</span>
+<span class="param-type">number</span>
 
 
             
@@ -1871,106 +2253,12 @@ Wird hauptsächlich für Kollisionsboxen verwendet.</p>
 
             
 
-            <td class="description last"><p>Der Canvas Rendering Context</p></td>
+            <td class="description last"><p>Abgezogene Energie</p></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="MovableObject.html#drawFrame">MovableObject#drawFrame</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line49">line 49</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="hit"><span class="type-signature"></span>hit<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Reduziert die Energie des Objekts bei einem Treffer.
-Setzt lastHit, wenn das Objekt noch Energie hat.</p>
-</div>
-
-
-
-
-
-
-
 
 
 
@@ -2011,7 +2299,7 @@ Setzt lastHit, wenn das Objekt noch Energie hat.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line66">line 66</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -2055,8 +2343,7 @@ Setzt lastHit, wenn das Objekt noch Energie hat.</p>
 
 
 <div class="description">
-    <p>Prüft, ob das Objekt sich über dem Boden befindet.
-ThrowableObjects fliegen immer über dem Boden.</p>
+    <p>Prüft, ob sich das Objekt über dem Boden befindet.</p>
 </div>
 
 
@@ -2105,7 +2392,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line101">line 101</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -2134,7 +2421,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
         
 <div class="param-desc">
-    <p>TRUE, wenn das Objekt über dem Boden ist</p>
+    <p>TRUE, wenn das Objekt in der Luft ist</p>
 </div>
 
 
@@ -2171,7 +2458,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
 
 <div class="description">
-    <p>Prüft, ob dieses Objekt mit einem anderen kollidiert.</p>
+    <p>Prüft, ob sich die Hitboxen dieses und eines anderen Objekts überschneiden.</p>
 </div>
 
 
@@ -2269,7 +2556,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line55">line 55</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line135">line 135</a>
     </li></ul></dd>
     
 
@@ -2384,7 +2671,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line91">line 91</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -2442,7 +2729,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
 
     
-    <h4 class="name" id="isHurt"><span class="type-signature"></span>isHurt<span class="signature">()</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="isHurt"><span class="type-signature"></span>isHurt<span class="signature">(duration<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -2459,6 +2746,75 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>duration</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    1000
+                
+                </td>
+            
+
+            <td class="description last"><p>Dauer des Verletzt-Zustands in ms</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -2499,7 +2855,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line80">line 80</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -2528,7 +2884,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
         
 <div class="param-desc">
-    <p>TRUE, wenn weniger als 1 Sekunde seit dem letzten Treffer vergangen ist</p>
+    <p>TRUE, wenn der letzte Treffer kürzer als duration her ist</p>
 </div>
 
 
@@ -2557,7 +2913,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
 
     
-    <h4 class="name" id="jump"><span class="type-signature"></span>jump<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="jump"><span class="type-signature"></span>jump<span class="signature">(power<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -2565,7 +2921,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
 
 <div class="description">
-    <p>Lässt, während das Objekt springt den, den Sprungsound abspielen und setzt die vertikale Geschwindigkeit</p>
+    <p>Lässt das Objekt springen, indem die vertikale Geschwindigkeit gesetzt wird.</p>
 </div>
 
 
@@ -2574,6 +2930,75 @@ ThrowableObjects fliegen immer über dem Boden.</p>
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>power</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    30
+                
+                </td>
+            
+
+            <td class="description last"><p>Startgeschwindigkeit nach oben</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -2614,7 +3039,100 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line120">line 120</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line186">line 186</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="landOnGround"><span class="type-signature"></span>landOnGround<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Setzt das Objekt exakt auf den Boden und stoppt die Fallbewegung.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#landOnGround">MovableObject#landOnGround</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line115">line 115</a>
     </li></ul></dd>
     
 
@@ -2756,7 +3274,7 @@ ThrowableObjects fliegen immer über dem Boden.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line64">line 64</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -2899,7 +3417,7 @@ Wird hauptsächlich für Animationen verwendet.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_drawable-object.class.js.html">models/drawable-object.class.js</a>, <a href="models_drawable-object.class.js.html#line75">line 75</a>
+        <a href="js_classes_drawable-object.class.js.html">js/classes/drawable-object.class.js</a>, <a href="js_classes_drawable-object.class.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -2992,7 +3510,7 @@ Wird hauptsächlich für Animationen verwendet.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line115">line 115</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line177">line 177</a>
     </li></ul></dd>
     
 
@@ -3085,7 +3603,7 @@ Wird hauptsächlich für Animationen verwendet.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line110">line 110</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line172">line 172</a>
     </li></ul></dd>
     
 
@@ -3121,7 +3639,7 @@ Wird hauptsächlich für Animationen verwendet.</p>
     
 
     
-    <h4 class="name" id="playAnimation"><span class="type-signature"></span>playAnimation<span class="signature">(images)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="playAnimation"><span class="type-signature"></span>playAnimation<span class="signature">(images, loop<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span></h4>
     
 
     
@@ -3129,7 +3647,8 @@ Wird hauptsächlich für Animationen verwendet.</p>
 
 
 <div class="description">
-    <p>Spielt eine Animation ab, indem das nächste Bild aus einem Array gesetzt wird.</p>
+    <p>Spielt eine Animation ab, indem das nächste Bild aus einem Array gesetzt wird.
+Beim Wechsel der Animation wird automatisch beim ersten Bild begonnen.</p>
 </div>
 
 
@@ -3153,7 +3672,11 @@ Wird hauptsächlich für Animationen verwendet.</p>
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -3178,10 +3701,61 @@ Wird hauptsächlich für Animationen verwendet.</p>
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"><p>Array von Bildpfaden</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    true
+                
+                </td>
+            
+
+            <td class="description last"><p>FALSE: bleibt am Ende auf dem letzten Bild stehen</p></td>
         </tr>
 
     
@@ -3227,7 +3801,193 @@ Wird hauptsächlich für Animationen verwendet.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_movable-object.class.js.html">models/movable-object.class.js</a>, <a href="models_movable-object.class.js.html#line130">line 130</a>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line197">line 197</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="remove"><span class="type-signature"></span>remove<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Stoppt das Objekt und markiert es, damit die Welt es aus ihren Listen entfernt.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#remove">MovableObject#remove</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="stopIntervals"><span class="type-signature"></span>stopIntervals<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Stoppt alle Intervalle dieses Objekts.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MovableObject.html#stopIntervals">MovableObject#stopIntervals</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="js_classes_movable-object.class.js.html">js/classes/movable-object.class.js</a>, <a href="js_classes_movable-object.class.js.html#line88">line 88</a>
     </li></ul></dd>
     
 
@@ -3273,13 +4033,13 @@ Wird hauptsächlich für Animationen verwendet.</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="ItemBar.html">ItemBar</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToGame">backToGame</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#deathScreen">deathScreen</a></li><li><a href="global.html#fullscreen">fullscreen</a></li><li><a href="global.html#gameContainer">gameContainer</a></li><li><a href="global.html#help">help</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#masterVolume">masterVolume</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#newstartGame">newstartGame</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#soundPushing">soundPushing</a></li><li><a href="global.html#sounds">sounds</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#win">win</a></li><li><a href="global.html#winnerInfo">winnerInfo</a></li><li><a href="global.html#world">world</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Enemy.html">Enemy</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SalsaBottle.html">SalsaBottle</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="SoundManager.html">SoundManager</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToMenu">backToMenu</a></li><li><a href="global.html#bindControlButton">bindControlButton</a></li><li><a href="global.html#bindMobileControls">bindMobileControls</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearCanvas">clearCanvas</a></li><li><a href="global.html#closeHelp">closeHelp</a></li><li><a href="global.html#confirmHelp">confirmHelp</a></li><li><a href="global.html#createBackgroundObjects">createBackgroundObjects</a></li><li><a href="global.html#createBackgroundSegment">createBackgroundSegment</a></li><li><a href="global.html#createBottles">createBottles</a></li><li><a href="global.html#createClouds">createClouds</a></li><li><a href="global.html#createCoins">createCoins</a></li><li><a href="global.html#createEnemies">createEnemies</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#endGameTimeout">endGameTimeout</a></li><li><a href="global.html#endScreenContent">endScreenContent</a></li><li><a href="global.html#gamePaused">gamePaused</a></li><li><a href="global.html#gameRunning">gameRunning</a></li><li><a href="global.html#handleControlButton">handleControlButton</a></li><li><a href="global.html#handleKey">handleKey</a></li><li><a href="global.html#handleOrientationChange">handleOrientationChange</a></li><li><a href="global.html#handleOutsideHelpClick">handleOutsideHelpClick</a></li><li><a href="global.html#handleVisibilityChange">handleVisibilityChange</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initUi">initUi</a></li><li><a href="global.html#intervalIds">intervalIds</a></li><li><a href="global.html#isHelpOpen">isHelpOpen</a></li><li><a href="global.html#keyBindings">keyBindings</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#level1EndX">level1EndX</a></li><li><a href="global.html#openHelp">openHelp</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#pausedByHelp">pausedByHelp</a></li><li><a href="global.html#portraitMobileQuery">portraitMobileQuery</a></li><li><a href="global.html#quitToMenu">quitToMenu</a></li><li><a href="global.html#renderEndScreen">renderEndScreen</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#scheduleGameEnd">scheduleGameEnd</a></li><li><a href="global.html#segmentWidth">segmentWidth</a></li><li><a href="global.html#setPlayingState">setPlayingState</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#soundManager">soundManager</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleHelpWithEscape">toggleHelpWithEscape</a></li><li><a href="global.html#toggleMute">toggleMute</a></li><li><a href="global.html#touchBindings">touchBindings</a></li><li><a href="global.html#updateFullscreenButton">updateFullscreenButton</a></li><li><a href="global.html#updateHelpActions">updateHelpActions</a></li><li><a href="global.html#updateMuteButton">updateMuteButton</a></li><li><a href="global.html#world">world</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Fri Mar 06 2026 17:45:00 GMT+0100 (Mitteleuropäische Normalzeit)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Oct 14 2026 12:02:32 GMT+0200 (Mitteleuropäische Sommerzeit)
 </footer>
 
 <script> prettyPrint(); </script>

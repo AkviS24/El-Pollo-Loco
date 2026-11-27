@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/classes/sound-manager.class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/classes/sound-manager.class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Einstellungen eines einzelnen Sounds.
+ * @typedef {Object} SoundConfig
+ * @property {string} src - Pfad zur Audiodatei
+ * @property {number} volume - Lautstärke von 0 bis 1
+ * @property {boolean} [loop] - TRUE, wenn der Sound in Schleife läuft
+ */
+
+/**
+ * Verwaltet alle Sounds und die Hintergrundmusik an einer zentralen Stelle.
+ * Dadurch wirkt das Stummschalten auf wirklich jeden Sound im Spiel.
+ * Der Stumm-Zustand wird im localStorage gespeichert und beim nächsten Besuch wiederhergestellt.
+ */
+class SoundManager {
+
+    /**
+     * Alle Sounds des Spiels mit Pfad, Lautstärke und ob sie in Schleife laufen.
+     * @type {Object.&lt;string, SoundConfig>}
+     */
+    soundFiles = {
+        music: { src: "./audio/game/backgroundMusic.mp3", volume: 0.18, loop: true },
+        gameStart: { src: "./audio/game/gameStart.mp3", volume: 0.7 },
+        win: { src: "./audio/game/win.mp3", volume: 0.45 },
+        lose: { src: "./audio/game/lose.mp3", volume: 0.3 },
+        walk: { src: "./audio/character/characterRun.mp3", volume: 0.3, loop: true },
+        jump: { src: "./audio/character/characterJump.mp3", volume: 0.35 },
+        hurt: { src: "./audio/character/characterDamage.mp3", volume: 0.4 },
+        dead: { src: "./audio/character/characterDead.mp3", volume: 0.35 },
+        snore: { src: "./audio/character/characterSnoring.mp3", volume: 0.6, loop: true },
+        splash: { src: "./audio/throwable/bottleBreak.mp3", volume: 0.35 },
+        empty: { src: "./audio/throwable/pups.mp3", volume: 0.5 },
+        coin: { src: "./audio/collectibles/collectSound.mp3", volume: 0.35 },
+        bottle: { src: "./audio/collectibles/bottleCollectSound.mp3", volume: 0.5 },
+        chickenDead: { src: "./audio/chicken/chickenDead.mp3", volume: 0.6 },
+        chickDead: { src: "./audio/chicken/chickenDead2.mp3", volume: 0.6 },
+        endbossAlert: { src: "./audio/endboss/endbossApproach.mp3", volume: 0.8 },
+        endbossHurt: { src: "./audio/endboss/endbossApproach.mp3", volume: 0.8 }
+    };
+
+    /**
+     * Schlüssel für den Stumm-Zustand im localStorage
+     * @type {string}
+     */
+    storageKey = "elPolloLoco.muted";
+
+    /**
+     * Alle erzeugten Audio-Elemente nach Namen
+     * @type {Object.&lt;string, HTMLAudioElement>}
+     */
+    sounds = {};
+
+    /**
+     * TRUE, wenn alle Sounds stumm geschaltet sind
+     * @type {boolean}
+     */
+    muted = false;
+
+    /**
+     * Lädt den gespeicherten Stumm-Zustand und erzeugt alle Audio-Elemente.
+     */
+    constructor() {
+        this.muted = this.loadMuteState();
+        Object.entries(this.soundFiles).forEach(([name, config]) => this.createSound(name, config));
+    }
+
+    /**
+     * Erzeugt ein Audio-Element und übernimmt Lautstärke, Loop und Stumm-Zustand.
+     *
+     * @param {string} name - Name, unter dem der Sound abgespielt wird
+     * @param {SoundConfig} config - Einstellungen des Sounds
+     */
+    createSound(name, config) {
+        let audio = new Audio(config.src);
+        audio.volume = config.volume;
+        audio.loop = config.loop || false;
+        audio.muted = this.muted;
+        this.sounds[name] = audio;
+    }
+
+    /**
+     * Spielt einen Sound von vorne ab.
+     *
+     * @param {string} name - Name des Sounds
+     */
+    play(name) {
+        let sound = this.sounds[name];
+        sound.currentTime = 0;
+        sound.play().catch(() => { });
+    }
+
+    /**
+     * Spielt einen Loop-Sound ab bzw. setzt ihn fort, falls er pausiert ist.
+     *
+     * @param {string} name - Name des Sounds
+     */
+    playLoop(name) {
+        let sound = this.sounds[name];
+        if (sound.paused) sound.play().catch(() => { });
+    }
+
+    /**
+     * Pausiert einen Sound, ohne ihn zurückzuspulen.
+     *
+     * @param {string} name - Name des Sounds
+     */
+    pause(name) {
+        let sound = this.sounds[name];
+        if (!sound.paused) sound.pause();
+    }
+
+    /** Pausiert alle Loop-Sounds (Musik, Laufen, Schnarchen), z.B. beim Pausieren des Spiels. */
+    pauseLoops() {
+        Object.entries(this.soundFiles).forEach(([name, config]) => {
+            if (config.loop) this.pause(name);
+        });
+    }
+
+    /** Stoppt alle Sounds und spult sie an den Anfang zurück. */
+    stopAll() {
+        Object.values(this.sounds).forEach((sound) => {
+            sound.pause();
+            sound.currentTime = 0;
+        });
+    }
+
+    /** Schaltet alle Sounds stumm bzw. wieder an und speichert die Einstellung. */
+    toggleMute() {
+        this.muted = !this.muted;
+        Object.values(this.sounds).forEach((sound) => sound.muted = this.muted);
+        this.saveMuteState();
+    }
+
+    /**
+     * Liest den gespeicherten Stumm-Zustand aus dem localStorage.
+     *
+     * @returns {boolean} TRUE, wenn der Ton zuletzt ausgeschaltet war
+     */
+    loadMuteState() {
+        try {
+            return localStorage.getItem(this.storageKey) === "true";
+        } catch (error) {
+            return false;
+        }
+    }
+
+    /** Speichert den aktuellen Stumm-Zustand im localStorage. */
+    saveMuteState() {
+        try {
+            localStorage.setItem(this.storageKey, String(this.muted));
+        } catch (error) {
+            return;
+        }
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObjects.html">BackgroundObjects</a></li><li><a href="Character.html">Character</a></li><li><a href="Chicken.html">Chicken</a></li><li><a href="Cloud.html">Cloud</a></li><li><a href="Coin.html">Coin</a></li><li><a href="CoinAnimation.html">CoinAnimation</a></li><li><a href="DrawableObject.html">DrawableObject</a></li><li><a href="Endboss.html">Endboss</a></li><li><a href="Enemy.html">Enemy</a></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MovableObject.html">MovableObject</a></li><li><a href="SalsaBottle.html">SalsaBottle</a></li><li><a href="SmallChicken.html">SmallChicken</a></li><li><a href="SoundManager.html">SoundManager</a></li><li><a href="StatusBar.html">StatusBar</a></li><li><a href="ThrowableObject.html">ThrowableObject</a></li><li><a href="World.html">World</a></li></ul><h3>Global</h3><ul><li><a href="global.html#backToMenu">backToMenu</a></li><li><a href="global.html#bindControlButton">bindControlButton</a></li><li><a href="global.html#bindMobileControls">bindMobileControls</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#clearAllIntervals">clearAllIntervals</a></li><li><a href="global.html#clearCanvas">clearCanvas</a></li><li><a href="global.html#closeHelp">closeHelp</a></li><li><a href="global.html#confirmHelp">confirmHelp</a></li><li><a href="global.html#createBackgroundObjects">createBackgroundObjects</a></li><li><a href="global.html#createBackgroundSegment">createBackgroundSegment</a></li><li><a href="global.html#createBottles">createBottles</a></li><li><a href="global.html#createClouds">createClouds</a></li><li><a href="global.html#createCoins">createCoins</a></li><li><a href="global.html#createEnemies">createEnemies</a></li><li><a href="global.html#createLevel1">createLevel1</a></li><li><a href="global.html#endGameTimeout">endGameTimeout</a></li><li><a href="global.html#endScreenContent">endScreenContent</a></li><li><a href="global.html#gamePaused">gamePaused</a></li><li><a href="global.html#gameRunning">gameRunning</a></li><li><a href="global.html#handleControlButton">handleControlButton</a></li><li><a href="global.html#handleKey">handleKey</a></li><li><a href="global.html#handleOrientationChange">handleOrientationChange</a></li><li><a href="global.html#handleOutsideHelpClick">handleOutsideHelpClick</a></li><li><a href="global.html#handleVisibilityChange">handleVisibilityChange</a></li><li><a href="global.html#hideElement">hideElement</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initUi">initUi</a></li><li><a href="global.html#intervalIds">intervalIds</a></li><li><a href="global.html#isHelpOpen">isHelpOpen</a></li><li><a href="global.html#keyBindings">keyBindings</a></li><li><a href="global.html#keyboard">keyboard</a></li><li><a href="global.html#level1EndX">level1EndX</a></li><li><a href="global.html#openHelp">openHelp</a></li><li><a href="global.html#pauseGame">pauseGame</a></li><li><a href="global.html#pausedByHelp">pausedByHelp</a></li><li><a href="global.html#portraitMobileQuery">portraitMobileQuery</a></li><li><a href="global.html#quitToMenu">quitToMenu</a></li><li><a href="global.html#renderEndScreen">renderEndScreen</a></li><li><a href="global.html#restartGame">restartGame</a></li><li><a href="global.html#resumeGame">resumeGame</a></li><li><a href="global.html#scheduleGameEnd">scheduleGameEnd</a></li><li><a href="global.html#segmentWidth">segmentWidth</a></li><li><a href="global.html#setPlayingState">setPlayingState</a></li><li><a href="global.html#setStoppableInterval">setStoppableInterval</a></li><li><a href="global.html#showElement">showElement</a></li><li><a href="global.html#showEndScreen">showEndScreen</a></li><li><a href="global.html#soundManager">soundManager</a></li><li><a href="global.html#startGame">startGame</a></li><li><a href="global.html#stopGame">stopGame</a></li><li><a href="global.html#toggleFullscreen">toggleFullscreen</a></li><li><a href="global.html#toggleHelpWithEscape">toggleHelpWithEscape</a></li><li><a href="global.html#toggleMute">toggleMute</a></li><li><a href="global.html#touchBindings">touchBindings</a></li><li><a href="global.html#updateFullscreenButton">updateFullscreenButton</a></li><li><a href="global.html#updateHelpActions">updateHelpActions</a></li><li><a href="global.html#updateMuteButton">updateMuteButton</a></li><li><a href="global.html#world">world</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Wed Oct 14 2026 12:02:32 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Abhängigkeiten & Tools
+node_modules/
+*.log
+
+# System- und Editor-Dateien
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Rohdaten aus dem Asset-Paket, die das Spiel nicht benötigt
+img/1_editables/
+*.zip
